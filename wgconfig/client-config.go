@@ -38,10 +38,10 @@ func (cfg *Client) WGConfig() io.Reader {
 }
 
 // AllowAllIPs clears [Client.AllowedIPs] and sets it to [EmptySubnet].
-func (cfg *Client) AllowAllIPs() { cfg.AllowedIPs = []net.IPNet{net.IPNet(EmptySubnet)} }
+func (cfg *Client) AllowAllIPs() { cfg.AllowedIPs = []net.IPNet{net.IPNet(wgapi.EmptySubnet)} }
 
 // DefaultPersistentKeepAlive sets [Client.PersistentKeepalive] to [DefaultPersistentKeepalive].
 func (cfg *Client) DefaultPersistentKeepAlive() {
 	cfg.PersistentKeepalive = new(uint16)
-	*cfg.PersistentKeepalive = uint16(DefaultPersistentKeepalive)
+	*cfg.PersistentKeepalive = uint16(wgapi.DefaultPersistentKeepalive)
 }

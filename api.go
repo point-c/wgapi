@@ -12,7 +12,6 @@ import (
 	"github.com/point-c/wgapi/internal/value"
 	"github.com/point-c/wgapi/internal/value/wgkey"
 	"io"
-	"net"
 )
 
 type (
@@ -96,11 +95,3 @@ type (
 
 // Errno is an error returned by the IPC.
 type Errno = value.Int64[key.Errno]
-
-// IdentitySubnet converts an IP (v4 or v6) to ipv6/128.
-func IdentitySubnet(ip net.IP) AllowedIP {
-	return AllowedIP{
-		IP:   ip.To16(),
-		Mask: net.CIDRMask(128, 128),
-	}
-}

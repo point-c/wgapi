@@ -36,7 +36,7 @@ func (cfg *Server) WGConfig() io.Reader {
 
 // DefaultListenPort sets [Server.DefaultListenPort] to [DefaultListenPort].
 func (cfg *Server) DefaultListenPort() {
-	cfg.ListenPort = uint16(DefaultListenPort)
+	cfg.ListenPort = uint16(wgapi.DefaultListenPort)
 }
 
 // AddPeer adds a peer with the given public and preshared keys. AllowedIPs is set to the [IdentitySubnet] of the given ip.
