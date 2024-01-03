@@ -1,4 +1,6 @@
-# WGAPI - Wireguard API Helper
+# wgapi
+
+[![Go Reference](https://pkg.go.dev/badge/github.com/point-c/wgapi@v0.0.1.svg)](https://pkg.go.dev/github.com/point-c/wgapi@v0.0.1)
 
 ## Introduction
 WGAPI is a Go package designed to assist in communicating with the Wireguard userspace module. It focuses on programmatically creating, reading, and handling Wireguard configuration in a text-based format, making it easier to manage Wireguard instances programmatically.
