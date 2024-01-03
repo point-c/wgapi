@@ -80,9 +80,101 @@ for _, v := range ipc {
 
 ### Creating a Wireguard Configuration
 
+#### Freeform
+
+`wgapi.IPC` is a slice type. It can be configured programmatically as you see fit.
+
 ```go
 r := wgapi.IPC{
 	// config values...
 }.WGConfig()
 // r will be an io.Reader that contains a syntactically valid wireguard configuration
+```
+
+#### Config Helpers
+
+##### Server
+
+```go
+// Server is a basic server configuration.
+type Server struct {
+    Private    wgapi.PrivateKey // Private is the server's private key.
+    ListenPort uint16           // ListenPort is the system port wireguard will listen on.
+    Peers      []*Peer          // Peers are the peers allowed to connect to this server.
+}
+```
+
+Wireguard's default listening port is `51820`. This can be set with:
+
+```go
+// DefaultListenPort sets [Server.DefaultListenPort] to [DefaultListenPort].
+func (cfg *Server) DefaultListenPort()
+```
+
+Peers can be easily added:
+
+```go
+peerIP := net.IPv4(192, 168, 99, 2)
+
+preShared, err := wgapi.NewPreshared()
+if err != nil {
+    panic(err)
+}
+
+privateKey, err := wgapi.NewPrivate()
+if err != nil {
+    panic(err)
+}
+// Use private key in client config
+publicKey, err := privateKey.Public()
+
+serverCfg.AddPeer(publicKey, preShared, peerIP)
+```
+
+##### Client
+
+```go
+// Client is a basic peer configuration.
+type Client struct {
+	Private             wgapi.PrivateKey   // Private is the peer's private key
+	Public              wgapi.PublicKey    // Public is the server's public key
+	PreShared           wgapi.PresharedKey // PreShared is the key shared between the peer and server (required)
+	Endpoint            net.UDPAddr        // Endpoint is the address and port of the wireguard server
+	PersistentKeepalive *uint16            // PersistentKeepalive is the interval (0 to disable, nil is ignored)
+	AllowedIPs          []net.IPNet        // AllowedIPs are the addresses allowed to communicate in the tunnel.
+}
+```
+
+Clients will likely want to allow all IPs. This can easily be done with the provided method:
+
+```go
+// AllowAllIPs clears [Client.AllowedIPs] and sets it to [EmptySubnet].
+func (cfg *Client) AllowAllIPs()
+```
+
+The default persistent keepalive can be set with:
+
+```go
+// DefaultPersistentKeepAlive sets [Client.PersistentKeepalive] to [DefaultPersistentKeepalive].
+func (cfg *Client) DefaultPersistentKeepAlive()
+```
+
+##### Pair Generator
+
+A generator exists to create configs quickly.
+
+```go
+endpoint, err := net.ResolveUDPAddr("udp", "endpoint address")
+if err != nil {
+    panic(err)
+}
+
+clientIP := net.IPv4(192.168.99.2)
+
+client, server, err := GenerateConfigPair(endpoint, clientIP)
+if err != nil {
+    panic(err)
+}
+// `client` and `server` contain valid config to connect to one another.
+// Matching keys are generated for each and defaults are filled in.
 ```
