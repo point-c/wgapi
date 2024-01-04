@@ -1,0 +1,7 @@
+package {{ .Package }}
+
+{{ range $typeName, $keyName := .Keys }}
+type {{ $typeName }} struct{}
+
+func ({{ $typeName }}) String() string { return "{{ $keyName }}" }
+{{ end }}

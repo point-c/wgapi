@@ -16,6 +16,8 @@ import (
 
 type (
 	// Configurable is something that can be converted into a reader that supplies 'key=value\n' values corresponding to the wireguard userspace configuration [wireguard cross-platform documentation].
+	//
+	// [wireguard cross-platform documentation]: https://www.wireguard.com/xplatform/
 	Configurable interface {
 		WGConfig() io.Reader
 	}
@@ -24,7 +26,9 @@ type (
 	IPCKeyValue = internal.KeyValue
 )
 
-// IPC is an IPC operation as documented by [wireguard cross-platform documentation].
+// IPC is an IPC operation as documented by the [wireguard cross-platform documentation].
+//
+// [wireguard cross-platform documentation]: https://www.wireguard.com/xplatform/
 type IPC []IPCKeyValue
 
 func (ir IPC) WGConfig() io.Reader {
@@ -90,6 +94,8 @@ type (
 	// ListenPort is the system port used to listen for wireguard traffic.
 	ListenPort = value.Uint16[key.ListenPort]
 	// FWMark configures the interface as specified in [wireguard cross-platform documentation]. The special value 0 clears the FWMark.
+	//
+	// [wireguard cross-platform documentation]: https://www.wireguard.com/xplatform/
 	FWMark = value.Uint32[key.FWMark]
 )
 

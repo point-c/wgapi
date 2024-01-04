@@ -3,10 +3,11 @@ package wgapi
 import (
 	"golang.zx2c4.com/wireguard/ipc"
 	"net"
-	"sync"
 )
 
-// IdentitySubnet converts an IP (v4 or v6) to ipv6/128.
+// IdentitySubnet takes an IP address (either IPv4 or IPv6) and returns it as an IPv6 address with a
+// subnet mask of /128. This effectively identifies a single address, as a /128 mask specifies all
+// 128 bits of the IPv6 address, leaving no room for a range of addresses.
 func IdentitySubnet(ip net.IP) AllowedIP {
 	return AllowedIP{
 		IP:   ip.To16(),
@@ -14,30 +15,26 @@ func IdentitySubnet(ip net.IP) AllowedIP {
 	}
 }
 
-// DefaultPersistentKeepalive is the default persistent keepalive interval.
 const DefaultPersistentKeepalive PersistentKeepalive = 25
 
-// DefaultListenPort is the default wireguard server port.
 const DefaultListenPort ListenPort = 51820
 
-// EmptySubnet is the 0.0.0.0/0 subnet
-var EmptySubnet = sync.OnceValue(func() AllowedIP {
-	const allSubnets = "0.0.0.0/0"
-	_, ip, _ := net.ParseCIDR(allSubnets)
+// EmptySubnet represents a subnet configuration that permits all IP addresses.
+// It's defined by setting the allowed IP range to '0.0.0.0/0', which effectively means
+// there are no restrictions on the IP addresses allowed through this subnet. It's typically
+// used in VPN configurations to indicate that all traffic should be routed through the VPN.
+var EmptySubnet = parseAllowedIP("0.0.0.0/0")
+
+func parseAllowedIP(s string) AllowedIP {
+	_, ip, _ := net.ParseCIDR(s)
 	return AllowedIP(*ip)
-})()
+}
 
 const (
-	// ErrnoNone means no error occurred
-	ErrnoNone = Errno(0)
-	// ErrnoIO references [ipc.IpcErrorIO].
-	ErrnoIO = Errno(ipc.IpcErrorIO)
-	// ErrnoProtocol references [ipc.IpcErrorProtocol].
-	ErrnoProtocol = Errno(ipc.IpcErrorProtocol)
-	// ErrnoInvalid references [ipc.IpcErrorInvalid].
-	ErrnoInvalid = Errno(ipc.IpcErrorInvalid)
-	// ErrnoPortInUse references [ipc.IpcErrorPortInUse].
+	ErrnoNone      = Errno(0)
+	ErrnoIO        = Errno(ipc.IpcErrorIO)
+	ErrnoProtocol  = Errno(ipc.IpcErrorProtocol)
+	ErrnoInvalid   = Errno(ipc.IpcErrorInvalid)
 	ErrnoPortInUse = Errno(ipc.IpcErrorPortInUse)
-	// ErrnoUnknown references [ipc.IpcErrorUnknown].
-	ErrnoUnknown = Errno(int64(ipc.IpcErrorUnknown))
+	ErrnoUnknown   = Errno(int64(ipc.IpcErrorUnknown))
 )

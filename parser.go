@@ -10,6 +10,8 @@ import (
 )
 
 // IPCGet is used to help get information from a wireguard userspace configuration as documented in [wireguard cross-platform documentation].
+//
+// [wireguard cross-platform documentation]: https://www.wireguard.com/xplatform/
 type IPCGet struct{ buf bytes.Buffer }
 
 // Write is used to write 'key=value\n' lines from the wireguard IPC.

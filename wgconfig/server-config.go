@@ -7,20 +7,23 @@ import (
 )
 
 type (
-	// Server is a basic server configuration.
+	// Server represents a WireGuard server configuration.
+	// It holds details necessary to set up and manage a WireGuard server including its private key, the port it listens on, and the set of peers that can connect to it.
 	Server struct {
-		Private    wgapi.PrivateKey // Private is the server's private key.
-		ListenPort uint16           // ListenPort is the system port wireguard will listen on.
-		Peers      []*Peer          // Peers are the peers allowed to connect to this server.
+		Private    wgapi.PrivateKey // Private is the server's private key used for establishing secure connections.
+		ListenPort uint16           // ListenPort specifies the port number on which the WireGuard server listens for incoming connections.
+		Peers      []*Peer          // Peers is a list of clients (peers) that are allowed to establish a connection with this server.
 	}
-	// Peer is a client that can connect to the server.
+	// Peer represents a client configuration that can establish a connection with a WireGuard server.
+	// It includes the client's public key, a pre-shared key for additional security, and a list of allowed IP addresses for routing traffic through the tunnel.
 	Peer struct {
-		Public     wgapi.PublicKey    // Public is the public key of this peer.
-		PreShared  wgapi.PresharedKey // PreShared is the preshared key for this peer (required).
-		AllowedIPs []net.IPNet        // AllowedIPs are the addresses allowed to communicate in the tunnel.
+		Public     wgapi.PublicKey    // Public is the peer's public key used to identify and authenticate it in the network. (required)
+		PreShared  wgapi.PresharedKey // PreShared is an optional additional preshared key for enhancing the security of the peer connection. (required)
+		AllowedIPs []net.IPNet        // AllowedIPs are the IP addresses that this peer is allowed to send and receive traffic from in the VPN tunnel. (required)
 	}
 )
 
+// WGConfig generates and returns a WireGuard configuration for the server.
 func (cfg *Server) WGConfig() io.Reader {
 	conf := wgapi.IPC{
 		cfg.Private,
@@ -34,12 +37,14 @@ func (cfg *Server) WGConfig() io.Reader {
 	return conf
 }
 
-// DefaultListenPort sets [Server.DefaultListenPort] to [DefaultListenPort].
+// DefaultListenPort sets [Server].ListenPort to [wgapi.DefaultListenPort].
 func (cfg *Server) DefaultListenPort() {
 	cfg.ListenPort = uint16(wgapi.DefaultListenPort)
 }
 
-// AddPeer adds a peer with the given public and preshared keys. AllowedIPs is set to the [IdentitySubnet] of the given ip.
+// AddPeer creates and adds a new peer to the server's peer list.
+// It takes the peer's public and preshared keys, along with an IP address to define its identity subnet for allowed IPs.
+// This method is used to dynamically expand the server's network with additional clients.
 func (cfg *Server) AddPeer(publicKey wgapi.PublicKey, preShared wgapi.PresharedKey, ip net.IP) {
 	cfg.Peers = append(cfg.Peers, &Peer{
 		Public:     publicKey,
@@ -48,6 +53,7 @@ func (cfg *Server) AddPeer(publicKey wgapi.PublicKey, preShared wgapi.PresharedK
 	})
 }
 
+// WGConfig generates and returns a WireGuard configuration for the peer.
 func (cfg *Peer) WGConfig() io.Reader {
 	return append(wgapi.IPC{
 		cfg.Public,
