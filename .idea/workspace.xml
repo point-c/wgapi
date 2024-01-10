@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20070508-c354-4106-8704-20f8799da1bd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/internal/key/internal/cmd/key.gotmpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/key/internal/cmd/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/key/keys.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants.go" beforeDir="false" afterPath="$PROJECT_DIR$/constants.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/key/keys.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/key/keys.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser.go" beforeDir="false" afterPath="$PROJECT_DIR$/parser.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wgconfig/client-config.go" beforeDir="false" afterPath="$PROJECT_DIR$/wgconfig/client-config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wgconfig/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/wgconfig/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wgconfig/server-config.go" beforeDir="false" afterPath="$PROJECT_DIR$/wgconfig/server-config.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

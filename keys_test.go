@@ -1,8 +1,12 @@
 package wgapi
 
 import (
+	"crypto/rand"
+	"errors"
 	"github.com/stretchr/testify/require"
+	"io"
 	"testing"
+	"testing/iotest"
 )
 
 func TestNewPreshared(t *testing.T) {
@@ -16,9 +20,17 @@ func TestNewPreshared(t *testing.T) {
 }
 
 func TestNewPrivate(t *testing.T) {
-	key, err := NewPrivate()
-	require.NoError(t, err)
-	require.IsType(t, PrivateKey{}, key)
+	t.Run("valid", func(t *testing.T) {
+		key, err := NewPrivate()
+		require.NoError(t, err)
+		require.IsType(t, PrivateKey{}, key)
+	})
+	t.Run("error", func(t *testing.T) {
+		defer func(r io.Reader) { rand.Reader = r }(rand.Reader)
+		rand.Reader = iotest.ErrReader(errors.New("test"))
+		_, err := NewPrivate()
+		require.Error(t, err)
+	})
 }
 
 func TestNewPrivatePublic(t *testing.T) {
@@ -40,6 +52,12 @@ func TestNewPrivatePublic(t *testing.T) {
 		require.NoError(t, err)
 
 		err = pu.UnmarshalText(b[:1])
+		require.Error(t, err)
+	})
+	t.Run("error", func(t *testing.T) {
+		defer func(r io.Reader) { rand.Reader = r }(rand.Reader)
+		rand.Reader = iotest.ErrReader(errors.New("test"))
+		_, _, err := NewPrivatePublic()
 		require.Error(t, err)
 	})
 }
