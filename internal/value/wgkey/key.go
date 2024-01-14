@@ -5,6 +5,12 @@ import (
 	"golang.zx2c4.com/wireguard/wgctrl/wgtypes"
 )
 
+var (
+	_ Type = Private{}
+	_ Type = Public{}
+	_ Type = PreShared{}
+)
+
 type (
 	Key[T Type] wgtypes.Key
 	Type        interface{ keyType() }
