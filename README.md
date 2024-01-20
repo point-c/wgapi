@@ -11,7 +11,7 @@ The `wgconfig` package also provides convenient structures and functions for set
 - Parsing and handling Wireguard configuration data.
 - Generating new private, public, and pre-shared keys.
 - Efficient and structured API communication with Wireguard.
-- 
+  
 ## Installation
 
 To use wgevents in your Go project, install it using `go get`:
