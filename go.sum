@@ -51,6 +51,8 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/point-c/generator-helpers v0.0.2 h1:Ddam46hRXsIGvQPylHIbjGCt2uaUy0X0JGd7h/AZNNQ=
 github.com/point-c/generator-helpers v0.0.2/go.mod h1:C0oVoDMq3jVUeUH2NgKtnd9rH5JZfa7ehBlPpVioyoA=
+github.com/point-c/generator-helpers v0.1.0 h1:o/QfN8n7vm9ANN4eW8IOwVFKk6qZl18KIqwNSzj3wgM=
+github.com/point-c/generator-helpers v0.1.0/go.mod h1:vgagjyDiqUH/I+4bC78y3ElbNgIPqRQk96eQyeOBkeU=
 github.com/sergi/go-diff v1.1.0 h1:we8PVUC3FE2uYfodKH/nBHMSetSfHDR6scGdBi+erh0=
 github.com/sergi/go-diff v1.1.0/go.mod h1:STckp+ISIX8hZLjrqAeVduY0gWCT9IjLuqbuNXdaHfM=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
