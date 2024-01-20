@@ -1,0 +1,134 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/point-c/wgapi/wgconfig/config.go - GoPages</title>
+
+<link type="text/css" rel="stylesheet" href="/wgapi/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/wgapi/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.21.6";</script>
+<script src="/wgapi/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages | Auto-generated docs</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/wgapi/src">src</a>/<a href="/wgapi/src/github.com">github.com</a>/<a href="/wgapi/src/github.com/point-c">point-c</a>/<a href="/wgapi/src/github.com/point-c/wgapi">wgapi</a>/<a href="/wgapi/src/github.com/point-c/wgapi/wgconfig">wgconfig</a>/<span class="text-muted">config.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/wgapi/pkg/github.com/point-c/wgapi/wgconfig">github.com/point-c/wgapi/wgconfig</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span><span class="comment">// Package wgconfig provides examples of simple client and server configurations using the WireGuard API.</span>
+<span id="L2" class="ln">     2  </span><span class="comment">// It includes functionality to generate and manage basic WireGuard VPN configurations.</span>
+<span id="L3" class="ln">     3  </span>package wgconfig
+<span id="L4" class="ln">     4  </span>
+<span id="L5" class="ln">     5  </span>import (
+<span id="L6" class="ln">     6  </span>	&#34;github.com/point-c/wgapi&#34;
+<span id="L7" class="ln">     7  </span>	&#34;net&#34;
+<span id="L8" class="ln">     8  </span>)
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span><span class="comment">// GenerateConfigPair creates a paired client and server configuration that are</span>
+<span id="L11" class="ln">    11  </span><span class="comment">// pre-configured to connect to each other. It generates private/public key pairs</span>
+<span id="L12" class="ln">    12  </span><span class="comment">// for both client and server, a shared pre-shared key, and initializes the client</span>
+<span id="L13" class="ln">    13  </span><span class="comment">// and server structs with these and additional passed parameters.</span>
+<span id="L14" class="ln">    14  </span><span class="comment">//</span>
+<span id="L15" class="ln">    15  </span><span class="comment">// The function requires an endpoint (UDP address of the server) and clientIP (IP address</span>
+<span id="L16" class="ln">    16  </span><span class="comment">// assigned to the client for VPN use). It returns either a configured client and server struct</span>
+<span id="L17" class="ln">    17  </span><span class="comment">// or the error encountered during the configuration process. The client and server</span>
+<span id="L18" class="ln">    18  </span><span class="comment">// are set to communicate with each other, with the client configured to allow all IPs and</span>
+<span id="L19" class="ln">    19  </span><span class="comment">// have a default persistent keepalive interval.</span>
+<span id="L20" class="ln">    20  </span><span class="comment">//</span>
+<span id="L21" class="ln">    21  </span><span class="comment">// Parameters:</span>
+<span id="L22" class="ln">    22  </span><span class="comment">// - endpoint: A [net.UDPAddr] representing the server&#39;s address and port.</span>
+<span id="L23" class="ln">    23  </span><span class="comment">// - clientIP: A [net.IP] representing the IP address to be assigned to the client in the VPN.</span>
+<span id="L24" class="ln">    24  </span><span class="comment">//</span>
+<span id="L25" class="ln">    25  </span><span class="comment">// Returns:</span>
+<span id="L26" class="ln">    26  </span><span class="comment">// - client: A pointer to an initialized [Client].</span>
+<span id="L27" class="ln">    27  </span><span class="comment">// - server: A pointer to an initialized [Server].</span>
+<span id="L28" class="ln">    28  </span><span class="comment">// - error: An error if the generation of keys fail, otherwise nil.</span>
+<span id="L29" class="ln">    29  </span>func GenerateConfigPair(endpoint *net.UDPAddr, clientIP net.IP) (client *Client, server *Server, _ error) {
+<span id="L30" class="ln">    30  </span>	<span class="comment">// Generate private/public key pair for the client.</span>
+<span id="L31" class="ln">    31  </span>	clientPrivate, clientPublic, err := wgapi.NewPrivatePublic()
+<span id="L32" class="ln">    32  </span>	if err != nil {
+<span id="L33" class="ln">    33  </span>		return nil, nil, err
+<span id="L34" class="ln">    34  </span>	}
+<span id="L35" class="ln">    35  </span>
+<span id="L36" class="ln">    36  </span>	<span class="comment">// Generate private/public key pair for the server.</span>
+<span id="L37" class="ln">    37  </span>	serverPrivate, serverPublic, err := wgapi.NewPrivatePublic()
+<span id="L38" class="ln">    38  </span>	if err != nil {
+<span id="L39" class="ln">    39  </span>		return nil, nil, err
+<span id="L40" class="ln">    40  </span>	}
+<span id="L41" class="ln">    41  </span>
+<span id="L42" class="ln">    42  </span>	<span class="comment">// Generate a new pre-shared key for additional security between client and server.</span>
+<span id="L43" class="ln">    43  </span>	sharedKey, err := wgapi.NewPreshared()
+<span id="L44" class="ln">    44  </span>	if err != nil {
+<span id="L45" class="ln">    45  </span>		return nil, nil, err
+<span id="L46" class="ln">    46  </span>	}
+<span id="L47" class="ln">    47  </span>
+<span id="L48" class="ln">    48  </span>	client = &amp;Client{
+<span id="L49" class="ln">    49  </span>		Private:   clientPrivate,
+<span id="L50" class="ln">    50  </span>		Public:    serverPublic,
+<span id="L51" class="ln">    51  </span>		PreShared: sharedKey,
+<span id="L52" class="ln">    52  </span>		Endpoint:  *endpoint,
+<span id="L53" class="ln">    53  </span>	}
+<span id="L54" class="ln">    54  </span>	client.AllowAllIPs()
+<span id="L55" class="ln">    55  </span>	client.DefaultPersistentKeepAlive()
+<span id="L56" class="ln">    56  </span>
+<span id="L57" class="ln">    57  </span>	<span class="comment">// Initialize server configuration with the listening port derived from the endpoint.</span>
+<span id="L58" class="ln">    58  </span>	server = &amp;Server{
+<span id="L59" class="ln">    59  </span>		Private:    serverPrivate,
+<span id="L60" class="ln">    60  </span>		ListenPort: uint16(endpoint.Port),
+<span id="L61" class="ln">    61  </span>	}
+<span id="L62" class="ln">    62  </span>	server.AddPeer(clientPublic, sharedKey, clientIP)
+<span id="L63" class="ln">    63  </span>
+<span id="L64" class="ln">    64  </span>	return
+<span id="L65" class="ln">    65  </span>}
+<span id="L66" class="ln">    66  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.21.6.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

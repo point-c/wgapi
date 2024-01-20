@@ -30,7 +30,7 @@ var args = struct {
 func init() {
 	flag.StringVar(&args.config, "config", args.config, "events config file")
 	flag.StringVar(&args.out, "out", args.out, "output filename")
-	flag.StringVar(&args.tout, "tout", args.out, "test output filename")
+	flag.StringVar(&args.tout, "tout", args.tout, "test output filename")
 	flag.StringVar(&args.pkg, "pkg", args.pkg, "gopackage of output")
 }
 

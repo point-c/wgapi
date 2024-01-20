@@ -13,7 +13,7 @@ func TestNewPreshared(t *testing.T) {
 	key, err := NewPreshared()
 	require.NoError(t, err)
 	require.IsType(t, PresharedKey{}, key)
-
+	// Fails to convert to public
 	_, err = key.Public()
 	require.Error(t, err)
 	require.NotEmpty(t, err.Error())

@@ -1,0 +1,160 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/point-c/wgapi/internal/value/value_test.go - GoPages</title>
+
+<link type="text/css" rel="stylesheet" href="/wgapi/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/wgapi/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.21.6";</script>
+<script src="/wgapi/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages | Auto-generated docs</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/wgapi/src">src</a>/<a href="/wgapi/src/github.com">github.com</a>/<a href="/wgapi/src/github.com/point-c">point-c</a>/<a href="/wgapi/src/github.com/point-c/wgapi">wgapi</a>/<a href="/wgapi/src/github.com/point-c/wgapi/internal">internal</a>/<a href="/wgapi/src/github.com/point-c/wgapi/internal/value">value</a>/<span class="text-muted">value_test.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value">github.com/point-c/wgapi/internal/value</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span>package value
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;encoding/hex&#34;
+<span id="L5" class="ln">     5  </span>	&#34;github.com/point-c/wgapi/internal&#34;
+<span id="L6" class="ln">     6  </span>	&#34;github.com/point-c/wgapi/internal/value/wgkey&#34;
+<span id="L7" class="ln">     7  </span>	&#34;github.com/stretchr/testify/require&#34;
+<span id="L8" class="ln">     8  </span>	&#34;golang.zx2c4.com/wireguard/wgctrl/wgtypes&#34;
+<span id="L9" class="ln">     9  </span>	&#34;net&#34;
+<span id="L10" class="ln">    10  </span>	&#34;strconv&#34;
+<span id="L11" class="ln">    11  </span>	&#34;testing&#34;
+<span id="L12" class="ln">    12  </span>)
+<span id="L13" class="ln">    13  </span>
+<span id="L14" class="ln">    14  </span>func TestUint32(t *testing.T) {
+<span id="L15" class="ln">    15  </span>	var v Uint32[internal.TestKey] = 123
+<span id="L16" class="ln">    16  </span>	require.Equal(t, internal.TestKeyString, v.Key())
+<span id="L17" class="ln">    17  </span>	require.Equal(t, strconv.Itoa(int(v)), v.String())
+<span id="L18" class="ln">    18  </span>}
+<span id="L19" class="ln">    19  </span>
+<span id="L20" class="ln">    20  </span>func TestUint16(t *testing.T) {
+<span id="L21" class="ln">    21  </span>	var v Uint16[internal.TestKey] = 123
+<span id="L22" class="ln">    22  </span>	require.Equal(t, internal.TestKeyString, v.Key())
+<span id="L23" class="ln">    23  </span>	require.Equal(t, strconv.Itoa(int(v)), v.String())
+<span id="L24" class="ln">    24  </span>}
+<span id="L25" class="ln">    25  </span>
+<span id="L26" class="ln">    26  </span>func TestUint64(t *testing.T) {
+<span id="L27" class="ln">    27  </span>	var v Uint64[internal.TestKey] = 123
+<span id="L28" class="ln">    28  </span>	require.Equal(t, internal.TestKeyString, v.Key())
+<span id="L29" class="ln">    29  </span>	require.Equal(t, strconv.Itoa(int(v)), v.String())
+<span id="L30" class="ln">    30  </span>}
+<span id="L31" class="ln">    31  </span>
+<span id="L32" class="ln">    32  </span>func TestInt64(t *testing.T) {
+<span id="L33" class="ln">    33  </span>	var v Int64[internal.TestKey] = 123
+<span id="L34" class="ln">    34  </span>	require.Equal(t, internal.TestKeyString, v.Key())
+<span id="L35" class="ln">    35  </span>	require.Equal(t, strconv.Itoa(int(v)), v.String())
+<span id="L36" class="ln">    36  </span>}
+<span id="L37" class="ln">    37  </span>
+<span id="L38" class="ln">    38  </span>func TestTrue(t *testing.T) {
+<span id="L39" class="ln">    39  </span>	var v True[internal.TestKey]
+<span id="L40" class="ln">    40  </span>	require.Equal(t, internal.TestKeyString, v.Key())
+<span id="L41" class="ln">    41  </span>	require.Equal(t, &#34;true&#34;, v.String())
+<span id="L42" class="ln">    42  </span>}
+<span id="L43" class="ln">    43  </span>
+<span id="L44" class="ln">    44  </span>func TestOne(t *testing.T) {
+<span id="L45" class="ln">    45  </span>	var v One[internal.TestKey]
+<span id="L46" class="ln">    46  </span>	require.Equal(t, internal.TestKeyString, v.Key())
+<span id="L47" class="ln">    47  </span>	require.Equal(t, &#34;1&#34;, v.String())
+<span id="L48" class="ln">    48  </span>}
+<span id="L49" class="ln">    49  </span>
+<span id="L50" class="ln">    50  </span>func TestUDPAddr(t *testing.T) {
+<span id="L51" class="ln">    51  </span>	addr := UDPAddr[internal.TestKey]{IP: net.IPv4(192, 168, 0, 1), Port: 8080}
+<span id="L52" class="ln">    52  </span>	require.Equal(t, internal.TestKeyString, addr.Key())
+<span id="L53" class="ln">    53  </span>	require.Equal(t, &#34;192.168.0.1:8080&#34;, addr.String())
+<span id="L54" class="ln">    54  </span>}
+<span id="L55" class="ln">    55  </span>
+<span id="L56" class="ln">    56  </span>func TestIPNet(t *testing.T) {
+<span id="L57" class="ln">    57  </span>	_, network, _ := net.ParseCIDR(&#34;192.168.0.0/24&#34;)
+<span id="L58" class="ln">    58  </span>	ipnet := IPNet[internal.TestKey](*network)
+<span id="L59" class="ln">    59  </span>	require.Equal(t, internal.TestKeyString, ipnet.Key())
+<span id="L60" class="ln">    60  </span>	require.Equal(t, &#34;192.168.0.0/24&#34;, ipnet.String())
+<span id="L61" class="ln">    61  </span>}
+<span id="L62" class="ln">    62  </span>
+<span id="L63" class="ln">    63  </span>func TestKey(t *testing.T) {
+<span id="L64" class="ln">    64  </span>	privateKey, _ := wgtypes.GeneratePrivateKey()
+<span id="L65" class="ln">    65  </span>	key := Key[internal.TestKey, wgkey.Private](privateKey)
+<span id="L66" class="ln">    66  </span>
+<span id="L67" class="ln">    67  </span>	require.Equal(t, internal.TestKeyString, key.Key())
+<span id="L68" class="ln">    68  </span>	require.Equal(t, hex.EncodeToString(privateKey[:]), key.String())
+<span id="L69" class="ln">    69  </span>
+<span id="L70" class="ln">    70  </span>	public, err := key.Public()
+<span id="L71" class="ln">    71  </span>	require.NoError(t, err)
+<span id="L72" class="ln">    72  </span>	pub := privateKey.PublicKey()
+<span id="L73" class="ln">    73  </span>	require.Equal(t, hex.EncodeToString(pub[:]), public.String())
+<span id="L74" class="ln">    74  </span>	oldPublic := public
+<span id="L75" class="ln">    75  </span>	public, err = public.Public()
+<span id="L76" class="ln">    76  </span>	require.NoError(t, err)
+<span id="L77" class="ln">    77  </span>	require.Equal(t, oldPublic, public)
+<span id="L78" class="ln">    78  </span>
+<span id="L79" class="ln">    79  </span>	marshaled, err := key.MarshalText()
+<span id="L80" class="ln">    80  </span>	require.NoError(t, err)
+<span id="L81" class="ln">    81  </span>	require.Equal(t, privateKey.String(), string(marshaled))
+<span id="L82" class="ln">    82  </span>
+<span id="L83" class="ln">    83  </span>	var newKey Key[internal.TestKey, wgkey.Private]
+<span id="L84" class="ln">    84  </span>	require.NoError(t, newKey.UnmarshalText(marshaled))
+<span id="L85" class="ln">    85  </span>	require.Equal(t, key, newKey)
+<span id="L86" class="ln">    86  </span>	require.Error(t, newKey.UnmarshalText([]byte{}))
+<span id="L87" class="ln">    87  </span>
+<span id="L88" class="ln">    88  </span>	var pre Key[internal.TestKey, wgkey.PreShared]
+<span id="L89" class="ln">    89  </span>	_, err = pre.Public()
+<span id="L90" class="ln">    90  </span>	require.Error(t, err)
+<span id="L91" class="ln">    91  </span>}
+<span id="L92" class="ln">    92  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.21.6.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

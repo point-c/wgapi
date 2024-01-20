@@ -1,0 +1,132 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/point-c/wgapi/wgconfig/config_test.go - GoPages</title>
+
+<link type="text/css" rel="stylesheet" href="/wgapi/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/wgapi/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.21.6";</script>
+<script src="/wgapi/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages | Auto-generated docs</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/wgapi/src">src</a>/<a href="/wgapi/src/github.com">github.com</a>/<a href="/wgapi/src/github.com/point-c">point-c</a>/<a href="/wgapi/src/github.com/point-c/wgapi">wgapi</a>/<a href="/wgapi/src/github.com/point-c/wgapi/wgconfig">wgconfig</a>/<span class="text-muted">config_test.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/wgapi/pkg/github.com/point-c/wgapi/wgconfig">github.com/point-c/wgapi/wgconfig</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span>package wgconfig
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;crypto/rand&#34;
+<span id="L5" class="ln">     5  </span>	&#34;errors&#34;
+<span id="L6" class="ln">     6  </span>	&#34;fmt&#34;
+<span id="L7" class="ln">     7  </span>	&#34;github.com/google/uuid&#34;
+<span id="L8" class="ln">     8  </span>	&#34;github.com/stretchr/testify/require&#34;
+<span id="L9" class="ln">     9  </span>	&#34;io&#34;
+<span id="L10" class="ln">    10  </span>	&#34;net&#34;
+<span id="L11" class="ln">    11  </span>	&#34;testing&#34;
+<span id="L12" class="ln">    12  </span>)
+<span id="L13" class="ln">    13  </span>
+<span id="L14" class="ln">    14  </span>func TestGenerateConfigPair(t *testing.T) {
+<span id="L15" class="ln">    15  </span>	randR := rand.Reader
+<span id="L16" class="ln">    16  </span>	defer func() { rand.Reader = randR }()
+<span id="L17" class="ln">    17  </span>	errExp := errors.New(uuid.NewString())
+<span id="L18" class="ln">    18  </span>
+<span id="L19" class="ln">    19  </span>	for i := range make([]struct{}, 4) {
+<span id="L20" class="ln">    20  </span>		t.Run(fmt.Sprintf(&#34;err after %d key generates&#34;, i), func(t *testing.T) {
+<span id="L21" class="ln">    21  </span>			r := newTestCountdownErrReader(t, randR, i, errExp)
+<span id="L22" class="ln">    22  </span>			rand.Reader = r
+<span id="L23" class="ln">    23  </span>			client, server, err := GenerateConfigPair(&amp;net.UDPAddr{}, net.IPv4allrouter)
+<span id="L24" class="ln">    24  </span>			switch i {
+<span id="L25" class="ln">    25  </span>			case 0, 1, 2:
+<span id="L26" class="ln">    26  </span>				require.ErrorContains(t, err, errExp.Error())
+<span id="L27" class="ln">    27  </span>				require.Nil(t, client)
+<span id="L28" class="ln">    28  </span>				require.Nil(t, server)
+<span id="L29" class="ln">    29  </span>			case 3:
+<span id="L30" class="ln">    30  </span>				require.NoError(t, err)
+<span id="L31" class="ln">    31  </span>				require.NotNil(t, client)
+<span id="L32" class="ln">    32  </span>				require.NotNil(t, server)
+<span id="L33" class="ln">    33  </span>			default:
+<span id="L34" class="ln">    34  </span>				t.Fatalf(&#34;invalid i %d&#34;, i)
+<span id="L35" class="ln">    35  </span>			}
+<span id="L36" class="ln">    36  </span>		})
+<span id="L37" class="ln">    37  </span>	}
+<span id="L38" class="ln">    38  </span>}
+<span id="L39" class="ln">    39  </span>
+<span id="L40" class="ln">    40  </span>type testCountdownErrReader struct {
+<span id="L41" class="ln">    41  </span>	t         testing.TB
+<span id="L42" class="ln">    42  </span>	base      io.Reader
+<span id="L43" class="ln">    43  </span>	countdown int
+<span id="L44" class="ln">    44  </span>	err       error
+<span id="L45" class="ln">    45  </span>}
+<span id="L46" class="ln">    46  </span>
+<span id="L47" class="ln">    47  </span>func newTestCountdownErrReader(t testing.TB, base io.Reader, countdown int, err error) *testCountdownErrReader {
+<span id="L48" class="ln">    48  </span>	t.Helper()
+<span id="L49" class="ln">    49  </span>	return &amp;testCountdownErrReader{
+<span id="L50" class="ln">    50  </span>		t:         t,
+<span id="L51" class="ln">    51  </span>		base:      base,
+<span id="L52" class="ln">    52  </span>		countdown: countdown,
+<span id="L53" class="ln">    53  </span>		err:       err,
+<span id="L54" class="ln">    54  </span>	}
+<span id="L55" class="ln">    55  </span>}
+<span id="L56" class="ln">    56  </span>
+<span id="L57" class="ln">    57  </span>func (t *testCountdownErrReader) Read(b []byte) (int, error) {
+<span id="L58" class="ln">    58  </span>	if t.countdown &lt;= 0 {
+<span id="L59" class="ln">    59  </span>		return 0, t.err
+<span id="L60" class="ln">    60  </span>	}
+<span id="L61" class="ln">    61  </span>	t.countdown--
+<span id="L62" class="ln">    62  </span>	return t.base.Read(b)
+<span id="L63" class="ln">    63  </span>}
+<span id="L64" class="ln">    64  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.21.6.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

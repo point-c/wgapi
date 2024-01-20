@@ -1,0 +1,158 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/point-c/wgapi/internal/value/values.go - GoPages</title>
+
+<link type="text/css" rel="stylesheet" href="/wgapi/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/wgapi/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.21.6";</script>
+<script src="/wgapi/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages | Auto-generated docs</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/wgapi/src">src</a>/<a href="/wgapi/src/github.com">github.com</a>/<a href="/wgapi/src/github.com/point-c">point-c</a>/<a href="/wgapi/src/github.com/point-c/wgapi">wgapi</a>/<a href="/wgapi/src/github.com/point-c/wgapi/internal">internal</a>/<a href="/wgapi/src/github.com/point-c/wgapi/internal/value">value</a>/<span class="text-muted">values.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value">github.com/point-c/wgapi/internal/value</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span>package value
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;encoding/hex&#34;
+<span id="L5" class="ln">     5  </span>	&#34;fmt&#34;
+<span id="L6" class="ln">     6  </span>	&#34;github.com/point-c/wgapi/internal/value/wgkey&#34;
+<span id="L7" class="ln">     7  </span>	&#34;golang.org/x/exp/constraints&#34;
+<span id="L8" class="ln">     8  </span>	&#34;golang.zx2c4.com/wireguard/wgctrl/wgtypes&#34;
+<span id="L9" class="ln">     9  </span>	&#34;net&#34;
+<span id="L10" class="ln">    10  </span>	&#34;slices&#34;
+<span id="L11" class="ln">    11  </span>	&#34;strconv&#34;
+<span id="L12" class="ln">    12  </span>)
+<span id="L13" class="ln">    13  </span>
+<span id="L14" class="ln">    14  </span>type Uint32[K fmt.Stringer] uint32
+<span id="L15" class="ln">    15  </span>
+<span id="L16" class="ln">    16  </span>func (v Uint32[K]) Key() string    { return getKey[K]() }
+<span id="L17" class="ln">    17  </span>func (v Uint32[K]) String() string { return numString(v) }
+<span id="L18" class="ln">    18  </span>
+<span id="L19" class="ln">    19  </span>type Uint16[K fmt.Stringer] uint16
+<span id="L20" class="ln">    20  </span>
+<span id="L21" class="ln">    21  </span>func (v Uint16[K]) Key() string    { return getKey[K]() }
+<span id="L22" class="ln">    22  </span>func (v Uint16[K]) String() string { return numString(v) }
+<span id="L23" class="ln">    23  </span>
+<span id="L24" class="ln">    24  </span>type Uint64[K fmt.Stringer] uint64
+<span id="L25" class="ln">    25  </span>
+<span id="L26" class="ln">    26  </span>func (v Uint64[K]) Key() string    { return getKey[K]() }
+<span id="L27" class="ln">    27  </span>func (v Uint64[K]) String() string { return numString(v) }
+<span id="L28" class="ln">    28  </span>
+<span id="L29" class="ln">    29  </span>type Int64[K fmt.Stringer] int64
+<span id="L30" class="ln">    30  </span>
+<span id="L31" class="ln">    31  </span>func (v Int64[K]) Key() string    { return getKey[K]() }
+<span id="L32" class="ln">    32  </span>func (v Int64[K]) String() string { return numString(v) }
+<span id="L33" class="ln">    33  </span>
+<span id="L34" class="ln">    34  </span>type True[K fmt.Stringer] struct{}
+<span id="L35" class="ln">    35  </span>
+<span id="L36" class="ln">    36  </span>func (True[K]) Key() string    { return getKey[K]() }
+<span id="L37" class="ln">    37  </span>func (True[K]) String() string { return boolString(true) }
+<span id="L38" class="ln">    38  </span>
+<span id="L39" class="ln">    39  </span>type One[K fmt.Stringer] struct{}
+<span id="L40" class="ln">    40  </span>
+<span id="L41" class="ln">    41  </span>func (One[K]) Key() string    { return getKey[K]() }
+<span id="L42" class="ln">    42  </span>func (One[K]) String() string { return numString(1) }
+<span id="L43" class="ln">    43  </span>
+<span id="L44" class="ln">    44  </span>type UDPAddr[K fmt.Stringer] net.UDPAddr
+<span id="L45" class="ln">    45  </span>
+<span id="L46" class="ln">    46  </span>func (addr UDPAddr[K]) Key() string    { return getKey[K]() }
+<span id="L47" class="ln">    47  </span>func (addr UDPAddr[K]) String() string { return ((*net.UDPAddr)(&amp;addr)).String() }
+<span id="L48" class="ln">    48  </span>
+<span id="L49" class="ln">    49  </span>type IPNet[K fmt.Stringer] net.IPNet
+<span id="L50" class="ln">    50  </span>
+<span id="L51" class="ln">    51  </span>func (ipnet IPNet[K]) Key() string    { return getKey[K]() }
+<span id="L52" class="ln">    52  </span>func (ipnet IPNet[K]) String() string { return ((*net.IPNet)(&amp;ipnet)).String() }
+<span id="L53" class="ln">    53  </span>
+<span id="L54" class="ln">    54  </span>type Key[K fmt.Stringer, Type wgkey.Type] wgkey.Key[Type]
+<span id="L55" class="ln">    55  </span>
+<span id="L56" class="ln">    56  </span>func (key Key[K, Type]) Key() string    { return getKey[K]() }
+<span id="L57" class="ln">    57  </span>func (key Key[K, Type]) String() string { return hex.EncodeToString(key[:]) }
+<span id="L58" class="ln">    58  </span>
+<span id="L59" class="ln">    59  </span><span class="comment">// Public converts the keys to a public key. An error will only be returned if the key is not a private key.</span>
+<span id="L60" class="ln">    60  </span>func (key Key[K, Type]) Public() (public Key[K, wgkey.Public], err error) {
+<span id="L61" class="ln">    61  </span>	switch any(*new(Type)).(type) {
+<span id="L62" class="ln">    62  </span>	case wgkey.Public:
+<span id="L63" class="ln">    63  </span>		public = Key[K, wgkey.Public](slices.Clone(key[:]))
+<span id="L64" class="ln">    64  </span>	case wgkey.Private:
+<span id="L65" class="ln">    65  </span>		public = Key[K, wgkey.Public](wgtypes.Key(key).PublicKey())
+<span id="L66" class="ln">    66  </span>	default:
+<span id="L67" class="ln">    67  </span>		err = wgkey.ErrInvalidKeyType[Type]{}
+<span id="L68" class="ln">    68  </span>	}
+<span id="L69" class="ln">    69  </span>	return
+<span id="L70" class="ln">    70  </span>}
+<span id="L71" class="ln">    71  </span>
+<span id="L72" class="ln">    72  </span><span class="comment">// MarshalText converts the key into a base64 string.</span>
+<span id="L73" class="ln">    73  </span>func (key Key[K, Type]) MarshalText() ([]byte, error) {
+<span id="L74" class="ln">    74  </span>	return []byte(wgtypes.Key(key).String()), nil
+<span id="L75" class="ln">    75  </span>}
+<span id="L76" class="ln">    76  </span>
+<span id="L77" class="ln">    77  </span><span class="comment">// UnmarshalText parses a key in base64 format.</span>
+<span id="L78" class="ln">    78  </span>func (key *Key[K, Type]) UnmarshalText(text []byte) error {
+<span id="L79" class="ln">    79  </span>	k, err := wgtypes.ParseKey(string(text))
+<span id="L80" class="ln">    80  </span>	if err != nil {
+<span id="L81" class="ln">    81  </span>		return err
+<span id="L82" class="ln">    82  </span>	}
+<span id="L83" class="ln">    83  </span>	copy(key[:], k[:])
+<span id="L84" class="ln">    84  </span>	return nil
+<span id="L85" class="ln">    85  </span>}
+<span id="L86" class="ln">    86  </span>
+<span id="L87" class="ln">    87  </span>func getKey[K fmt.Stringer]() string              { var k K; return k.String() }
+<span id="L88" class="ln">    88  </span>func boolString[B ~bool](b B) string              { return strconv.FormatBool(bool(b)) }
+<span id="L89" class="ln">    89  </span>func numString[N constraints.Integer](n N) string { return strconv.Itoa(int(n)) }
+<span id="L90" class="ln">    90  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.21.6.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

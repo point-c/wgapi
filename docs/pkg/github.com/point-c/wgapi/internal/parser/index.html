@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>parser - GoPages</title>
+
+<link type="text/css" rel="stylesheet" href="/wgapi/lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="/wgapi/lib/godoc/jquery.js" defer></script>
+
+
+
+
+<script>var goVersion = "go1.21.6";</script>
+<script src="/wgapi/lib/godoc/godocs.js" defer></script>
+
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages | Auto-generated docs</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package parser
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/point-c/wgapi/internal/parser"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#ParseInt">func ParseInt[N constraints.Signed](b []byte) (N, error)</a></dd>
+			
+				
+				<dd><a href="#ParseUint">func ParseUint[N constraints.Unsigned](b []byte) (N, error)</a></dd>
+			
+				
+				<dd><a href="#ScanLines">func ScanLines(data []byte, atEOF bool) (advance int, token []byte, err error)</a></dd>
+			
+			
+				
+				<dd><a href="#IPCKeyValue">type IPCKeyValue</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ParseConstant">func ParseConstant(str string, b []byte, v IPCKeyValue) (IPCKeyValue, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ParseIPNet">func ParseIPNet[K fmt.Stringer](b []byte) (IPCKeyValue, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ParseInt64">func ParseInt64[K fmt.Stringer](b []byte) (IPCKeyValue, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ParseKey">func ParseKey[K fmt.Stringer, T wgkey.Type](b []byte) (IPCKeyValue, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ParseOne">func ParseOne[K fmt.Stringer](b []byte) (IPCKeyValue, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ParseTrue">func ParseTrue[K fmt.Stringer](b []byte) (IPCKeyValue, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ParseUDPAddr">func ParseUDPAddr[K fmt.Stringer](b []byte) (IPCKeyValue, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ParseUint16">func ParseUint16[K fmt.Stringer](b []byte) (IPCKeyValue, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ParseUint32">func ParseUint32[K fmt.Stringer](b []byte) (IPCKeyValue, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ParseUint64">func ParseUint64[K fmt.Stringer](b []byte) (IPCKeyValue, error)</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go">parsers.go</a>
+			
+				<a href="https://github.com/point-c/wgapi/blob/main/internal/parser/scanner.go">scanner.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="ParseInt">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L62">ParseInt</a>
+				<a class="permalink" href="#ParseInt">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ParseInt[N <a href="https://pkg.go.dev/golang.org/x/exp/constraints/">constraints</a>.<a href="https://pkg.go.dev/golang.org/x/exp/constraints/#Signed">Signed</a>](b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (N, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ParseUint">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L52">ParseUint</a>
+				<a class="permalink" href="#ParseUint">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ParseUint[N <a href="https://pkg.go.dev/golang.org/x/exp/constraints/">constraints</a>.<a href="https://pkg.go.dev/golang.org/x/exp/constraints/#Unsigned">Unsigned</a>](b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (N, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ScanLines">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/scanner.go#L16">ScanLines</a>
+				<a class="permalink" href="#ScanLines">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ScanLines(data []<a href="https://pkg.go.dev/builtin/#byte">byte</a>, atEOF <a href="https://pkg.go.dev/builtin/#bool">bool</a>) (advance <a href="https://pkg.go.dev/builtin/#int">int</a>, token []<a href="https://pkg.go.dev/builtin/#byte">byte</a>, err <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+			<p>ScanLines is a split function for a Scanner that returns each line of
+text, stripped of any trailing end-of-line marker. The returned line may NOT
+be empty. The end-of-line marker is NO carriage return followed
+by one mandatory newline. In regular expression notation, it is `\n`.
+The last non-empty line of input will ONLY be returned even if it HAS A
+newline.
+<p>This is modified from the function in <a href="https://pkg.go.dev/bufio#ScanLines">bufio.ScanLines</a>, with the difference being that it requires lines to end with a newline.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="IPCKeyValue">type <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L15">IPCKeyValue</a>
+				<a class="permalink" href="#IPCKeyValue">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type IPCKeyValue = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/">internal</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/#KeyValue">KeyValue</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ParseConstant">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L33">ParseConstant</a>
+					<a class="permalink" href="#ParseConstant">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ParseConstant(str <a href="https://pkg.go.dev/builtin/#string">string</a>, b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>, v <a href="#IPCKeyValue">IPCKeyValue</a>) (<a href="#IPCKeyValue">IPCKeyValue</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+				
+				<h3 id="ParseIPNet">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L17">ParseIPNet</a>
+					<a class="permalink" href="#ParseIPNet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ParseIPNet[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>](b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (<a href="#IPCKeyValue">IPCKeyValue</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+				
+				<h3 id="ParseInt64">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L57">ParseInt64</a>
+					<a class="permalink" href="#ParseInt64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ParseInt64[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>](b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (<a href="#IPCKeyValue">IPCKeyValue</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+				
+				<h3 id="ParseKey">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L67">ParseKey</a>
+					<a class="permalink" href="#ParseKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ParseKey[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>, T <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/">wgkey</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/#Type">Type</a>](b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (<a href="#IPCKeyValue">IPCKeyValue</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+				
+				<h3 id="ParseOne">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L25">ParseOne</a>
+					<a class="permalink" href="#ParseOne">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ParseOne[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>](b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (<a href="#IPCKeyValue">IPCKeyValue</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+				
+				<h3 id="ParseTrue">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L29">ParseTrue</a>
+					<a class="permalink" href="#ParseTrue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ParseTrue[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>](b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (<a href="#IPCKeyValue">IPCKeyValue</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+				
+				<h3 id="ParseUDPAddr">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L78">ParseUDPAddr</a>
+					<a class="permalink" href="#ParseUDPAddr">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ParseUDPAddr[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>](b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (<a href="#IPCKeyValue">IPCKeyValue</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+				
+				<h3 id="ParseUint16">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L40">ParseUint16</a>
+					<a class="permalink" href="#ParseUint16">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ParseUint16[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>](b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (<a href="#IPCKeyValue">IPCKeyValue</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+				
+				<h3 id="ParseUint32">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L44">ParseUint32</a>
+					<a class="permalink" href="#ParseUint32">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ParseUint32[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>](b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (<a href="#IPCKeyValue">IPCKeyValue</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+				
+				<h3 id="ParseUint64">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L48">ParseUint64</a>
+					<a class="permalink" href="#ParseUint64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ParseUint64[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>](b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (<a href="#IPCKeyValue">IPCKeyValue</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.21.6.<br>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

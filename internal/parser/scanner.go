@@ -12,7 +12,7 @@ import (
 // The last non-empty line of input will ONLY be returned even if it HAS A
 // newline.
 //
-// This is modified from the build in [bufio.ScanLines], with the difference being that is requires lines to end with a newline.
+// This is modified from the function in [bufio.ScanLines], with the difference being that it requires lines to end with a newline.
 func ScanLines(data []byte, atEOF bool) (advance int, token []byte, err error) {
 	if atEOF && len(data) == 0 {
 		return 0, nil, nil

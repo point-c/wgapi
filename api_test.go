@@ -3,12 +3,11 @@ package wgapi_test
 import (
 	"bufio"
 	"encoding/hex"
-	"errors"
 	"github.com/point-c/wgapi"
 	"github.com/point-c/wgapi/internal/parser"
+	"github.com/stretchr/testify/require"
 	"io"
 	"net"
-	"reflect"
 	"strings"
 	"testing"
 )
@@ -69,25 +68,18 @@ func TestIpcRequest_Set(t *testing.T) {
 	sc2 := bufio.NewScanner(r)
 	sc2.Split(parser.ScanLines)
 	for i := 0; sc1.Scan() && sc2.Scan(); i++ {
-		if sc1.Text() != sc2.Text() {
-			t.Fatalf("line %d invalid, %q != %q", i, sc1.Text(), sc2.Text())
-		}
+		require.Equalf(t, sc1.Text(), sc2.Text(), "line(%d)", i)
 	}
-
-	if err := errors.Join(sc1.Err(), sc2.Err()); err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, sc1.Err())
+	require.NoError(t, sc2.Err())
 }
 
 func mustParseKey[K wgapi.PublicKey | wgapi.PresharedKey | wgapi.PrivateKey](t *testing.T, key string) K {
 	t.Helper()
 	var k K
 	n, err := hex.Decode(k[:], []byte(key))
-	if n != len(k) {
-		t.Fatalf("invalid key length %d", n)
-	} else if err != nil {
-		t.Fatal(err)
-	}
+	require.Len(t, k, n)
+	require.NoError(t, err)
 	return k
 }
 
@@ -113,17 +105,14 @@ protocol_version=1
 errno=0
 `
 
+// TestIpcRequest_Get validates a get request against the example at https://www.wireguard.com/xplatform/
 func TestIpcRequest_Get(t *testing.T) {
 	var p wgapi.IPCGet
 	defer p.Reset()
-	if _, err := io.WriteString(&p, exampleGet); err != nil {
-		t.Fatal(err)
-	}
-
+	_, err := io.WriteString(&p, exampleGet)
+	require.NoError(t, err)
 	v, err := p.Value()
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 
 	comp := wgapi.IPC{
 		mustParseKey[wgapi.PrivateKey](t, "e84b5a6d2717c1003a13b431570353dbaca9146cf150c5f8575680feba52027a"),
@@ -148,44 +137,46 @@ func TestIpcRequest_Get(t *testing.T) {
 		wgapi.ErrnoNone,
 	}
 
-	if len(v) != len(comp) {
-		t.Fatalf("expected size %d got %d", len(comp), len(v))
-	}
-
+	require.Len(t, v, len(comp))
 	for i, e := range comp {
-		v := v[i]
-		if e.Key() != v.Key() {
-			t.Fatalf("line %d invalid, got key %q, expected %q", i, v.Key(), e.Key())
-		} else if v.String() != v.String() {
-			t.Fatalf("line %d invalid, got value %q, expected %q", i, v.String(), e.String())
-		}
-
-		if !reflect.TypeOf(e).AssignableTo(reflect.TypeOf(v)) {
-			t.Fatalf("line %d invalid, got type %T, expected %T", i, v, e)
-		}
+		require.Equalf(t, e.Key(), v[i].Key(), "line(%d)", i)
+		require.Equalf(t, e.String(), v[i].String(), "line(%d)", i)
+		require.IsTypef(t, e, v[i], "line(%d)", i)
 	}
 }
 
-func TestIpcResquest_NoNewline(t *testing.T) {
+func TestIpcRequest_Reset(t *testing.T) {
 	var p wgapi.IPCGet
-	defer p.Reset()
-	if _, err := io.WriteString(&p, `protocol_version=1`); err != nil {
-		t.Fatal(err)
-	}
+	_, err := p.Write([]byte("test"))
+	require.NoError(t, err)
 
-	_, err := p.Value()
-	if err == nil {
-		t.Fail()
-	}
+	var exp wgapi.IPCGet
+	_, err = exp.Write([]byte{0})
+	require.NoError(t, err)
+	exp.Reset()
+
+	require.NotEqual(t, exp, p)
+	p.Reset()
+	require.Equal(t, exp, p)
+}
+
+func TestIpcRequest_NoNewline(t *testing.T) {
+	var p wgapi.IPCGet
+	_, err := io.WriteString(&p, `protocol_version=1`)
+	require.NoError(t, err)
+	_, err = p.Value()
+	require.Error(t, err)
 }
 
 func TestAssignability(t *testing.T) {
+	// Set TXBytes to a non zero value
 	tx := wgapi.TXBytes(16)
+	// Convert to interface
 	var val wgapi.IPCKeyValue = tx
+	// Assert as RXBytes
 	rx, ok := val.(wgapi.RXBytes)
-	if ok {
-		t.Fail()
-	} else if int(rx) == int(tx) {
-		t.Fail()
-	}
+	// Require type assertion to fail
+	require.False(t, ok)
+	// Type assertions will return zero value for rx
+	require.NotEqual(t, int(rx), int(tx))
 }

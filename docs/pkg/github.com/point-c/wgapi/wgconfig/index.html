@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>wgconfig - GoPages</title>
+
+<link type="text/css" rel="stylesheet" href="/wgapi/lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="/wgapi/lib/godoc/jquery.js" defer></script>
+
+
+
+
+<script>var goVersion = "go1.21.6";</script>
+<script src="/wgapi/lib/godoc/godocs.js" defer></script>
+
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages | Auto-generated docs</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package wgconfig
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/point-c/wgapi/wgconfig"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package wgconfig provides examples of simple client and server configurations using the WireGuard API.
+It includes functionality to generate and manage basic WireGuard VPN configurations.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#GenerateConfigPair">func GenerateConfigPair(endpoint *net.UDPAddr, clientIP net.IP) (client *Client, server *Server, _ error)</a></dd>
+			
+			
+				
+				<dd><a href="#Client">type Client</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Client.AllowAllIPs">func (cfg *Client) AllowAllIPs()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Client.DefaultPersistentKeepAlive">func (cfg *Client) DefaultPersistentKeepAlive()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Client.WGConfig">func (cfg *Client) WGConfig() io.Reader</a></dd>
+				
+			
+				
+				<dd><a href="#Peer">type Peer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Peer.WGConfig">func (cfg *Peer) WGConfig() io.Reader</a></dd>
+				
+			
+				
+				<dd><a href="#Server">type Server</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Server.AddPeer">func (cfg *Server) AddPeer(publicKey wgapi.PublicKey, preShared wgapi.PresharedKey, ip net.IP)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Server.DefaultListenPort">func (cfg *Server) DefaultListenPort()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Server.WGConfig">func (cfg *Server) WGConfig() io.Reader</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="https://github.com/point-c/wgapi/blob/main/wgconfig/client-config.go">client-config.go</a>
+			
+				<a href="https://github.com/point-c/wgapi/blob/main/wgconfig/config.go">config.go</a>
+			
+				<a href="https://github.com/point-c/wgapi/blob/main/wgconfig/server-config.go">server-config.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="GenerateConfigPair">func <a href="https://github.com/point-c/wgapi/blob/main/wgconfig/config.go#L29">GenerateConfigPair</a>
+				<a class="permalink" href="#GenerateConfigPair">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GenerateConfigPair(endpoint *<a href="https://pkg.go.dev/net/">net</a>.<a href="https://pkg.go.dev/net/#UDPAddr">UDPAddr</a>, clientIP <a href="https://pkg.go.dev/net/">net</a>.<a href="https://pkg.go.dev/net/#IP">IP</a>) (client *<a href="#Client">Client</a>, server *<a href="#Server">Server</a>, _ <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+			<p>GenerateConfigPair creates a paired client and server configuration that are
+pre-configured to connect to each other. It generates private/public key pairs
+for both client and server, a shared pre-shared key, and initializes the client
+and server structs with these and additional passed parameters.
+<p>The function requires an endpoint (UDP address of the server) and clientIP (IP address
+assigned to the client for VPN use). It returns either a configured client and server struct
+or the error encountered during the configuration process. The client and server
+are set to communicate with each other, with the client configured to allow all IPs and
+have a default persistent keepalive interval.
+<p>Parameters:
+- endpoint: A <a href="https://pkg.go.dev/net#UDPAddr">net.UDPAddr</a> representing the server&apos;s address and port.
+- clientIP: A <a href="https://pkg.go.dev/net#IP">net.IP</a> representing the IP address to be assigned to the client in the VPN.
+<p>Returns:
+- client: A pointer to an initialized <a href="#Client">Client</a>.
+- server: A pointer to an initialized <a href="#Server">Server</a>.
+- error: An error if the generation of keys fail, otherwise nil.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Client">type <a href="https://github.com/point-c/wgapi/blob/main/wgconfig/client-config.go#L11">Client</a>
+				<a class="permalink" href="#Client">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Client represents a WireGuard peer with necessary configuration parameters.
+It contains cryptographic keys, network settings, and other options to set up a WireGuard connection.
+
+			<pre>type Client struct {
+<span id="Client.Private"></span>    Private             <a href="/wgapi/pkg/github.com/point-c/wgapi/">wgapi</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/#PrivateKey">PrivateKey</a>   <span class="comment">// Private is the private key of the peer. (required)</span>
+<span id="Client.Public"></span>    Public              <a href="/wgapi/pkg/github.com/point-c/wgapi/">wgapi</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/#PublicKey">PublicKey</a>    <span class="comment">// Public is the public key of the server that the peer intends to connect to. (required)</span>
+<span id="Client.PreShared"></span>    PreShared           <a href="/wgapi/pkg/github.com/point-c/wgapi/">wgapi</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/#PresharedKey">PresharedKey</a> <span class="comment">// PreShared is a key shared between the peer and server to further secure the connection. (required)</span>
+<span id="Client.Endpoint"></span>    Endpoint            <a href="https://pkg.go.dev/net/">net</a>.<a href="https://pkg.go.dev/net/#UDPAddr">UDPAddr</a>        <span class="comment">// Endpoint specifies the server&#39;s address and port as a UDP address. (required)</span>
+<span id="Client.PersistentKeepalive"></span>    PersistentKeepalive *<a href="https://pkg.go.dev/builtin/#uint16">uint16</a>            <span class="comment">// PersistentKeepalive is an optional field that specifies the frequency in seconds of keepalive messages sent to maintain the connection. (0 to disable, nil is ignored)</span>
+<span id="Client.AllowedIPs"></span>    AllowedIPs          []<a href="https://pkg.go.dev/net/">net</a>.<a href="https://pkg.go.dev/net/#IPNet">IPNet</a>        <span class="comment">// AllowedIPs specifies IP ranges that are allowed to be routed through this WireGuard tunnel.</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Client.AllowAllIPs">func (*Client) <a href="https://github.com/point-c/wgapi/blob/main/wgconfig/client-config.go#L41">AllowAllIPs</a>
+					<a class="permalink" href="#Client.AllowAllIPs">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cfg *<a href="#Client">Client</a>) AllowAllIPs()</pre>
+				<p>AllowAllIPs clears <a href="#Client">Client</a>.AllowedIPs and sets it to <a href="/wgapi/pkg/github.com/point-c/wgapi#EmptySubnet">wgapi.EmptySubnet</a>.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.DefaultPersistentKeepAlive">func (*Client) <a href="https://github.com/point-c/wgapi/blob/main/wgconfig/client-config.go#L44">DefaultPersistentKeepAlive</a>
+					<a class="permalink" href="#Client.DefaultPersistentKeepAlive">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cfg *<a href="#Client">Client</a>) DefaultPersistentKeepAlive()</pre>
+				<p>DefaultPersistentKeepAlive sets <a href="#Client">Client</a>.PersistentKeepalive to <a href="/wgapi/pkg/github.com/point-c/wgapi#DefaultPersistentKeepalive">wgapi.DefaultPersistentKeepalive</a>.
+
+				
+				
+				
+			
+				
+				<h3 id="Client.WGConfig">func (*Client) <a href="https://github.com/point-c/wgapi/blob/main/wgconfig/client-config.go#L21">WGConfig</a>
+					<a class="permalink" href="#Client.WGConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cfg *<a href="#Client">Client</a>) WGConfig() <a href="https://pkg.go.dev/io/">io</a>.<a href="https://pkg.go.dev/io/#Reader">Reader</a></pre>
+				<p>WGConfig assembles and returns a WireGuard configuration for the client.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Peer">type <a href="https://github.com/point-c/wgapi/blob/main/wgconfig/server-config.go#L19">Peer</a>
+				<a class="permalink" href="#Peer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Peer represents a client configuration that can establish a connection with a WireGuard server.
+It includes the client&apos;s public key, a pre-shared key for additional security, and a list of allowed IP addresses for routing traffic through the tunnel.
+
+			<pre>type Peer struct {
+<span id="Peer.Public"></span>    Public     <a href="/wgapi/pkg/github.com/point-c/wgapi/">wgapi</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/#PublicKey">PublicKey</a>    <span class="comment">// Public is the peer&#39;s public key used to identify and authenticate it in the network. (required)</span>
+<span id="Peer.PreShared"></span>    PreShared  <a href="/wgapi/pkg/github.com/point-c/wgapi/">wgapi</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/#PresharedKey">PresharedKey</a> <span class="comment">// PreShared is an optional additional preshared key for enhancing the security of the peer connection. (required)</span>
+<span id="Peer.AllowedIPs"></span>    AllowedIPs []<a href="https://pkg.go.dev/net/">net</a>.<a href="https://pkg.go.dev/net/#IPNet">IPNet</a>        <span class="comment">// AllowedIPs are the IP addresses that this peer is allowed to send and receive traffic from in the VPN tunnel. (required)</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Peer.WGConfig">func (*Peer) <a href="https://github.com/point-c/wgapi/blob/main/wgconfig/server-config.go#L57">WGConfig</a>
+					<a class="permalink" href="#Peer.WGConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cfg *<a href="#Peer">Peer</a>) WGConfig() <a href="https://pkg.go.dev/io/">io</a>.<a href="https://pkg.go.dev/io/#Reader">Reader</a></pre>
+				<p>WGConfig generates and returns a WireGuard configuration for the peer.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Server">type <a href="https://github.com/point-c/wgapi/blob/main/wgconfig/server-config.go#L12">Server</a>
+				<a class="permalink" href="#Server">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Server represents a WireGuard server configuration.
+It holds details necessary to set up and manage a WireGuard server including its private key, the port it listens on, and the set of peers that can connect to it.
+
+			<pre>type Server struct {
+<span id="Server.Private"></span>    Private    <a href="/wgapi/pkg/github.com/point-c/wgapi/">wgapi</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/#PrivateKey">PrivateKey</a> <span class="comment">// Private is the server&#39;s private key used for establishing secure connections.</span>
+<span id="Server.ListenPort"></span>    ListenPort <a href="https://pkg.go.dev/builtin/#uint16">uint16</a>           <span class="comment">// ListenPort specifies the port number on which the WireGuard server listens for incoming connections.</span>
+<span id="Server.Peers"></span>    Peers      []*<a href="#Peer">Peer</a>          <span class="comment">// Peers is a list of clients (peers) that are allowed to establish a connection with this server.</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Server.AddPeer">func (*Server) <a href="https://github.com/point-c/wgapi/blob/main/wgconfig/server-config.go#L48">AddPeer</a>
+					<a class="permalink" href="#Server.AddPeer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cfg *<a href="#Server">Server</a>) AddPeer(publicKey <a href="/wgapi/pkg/github.com/point-c/wgapi/">wgapi</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/#PublicKey">PublicKey</a>, preShared <a href="/wgapi/pkg/github.com/point-c/wgapi/">wgapi</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/#PresharedKey">PresharedKey</a>, ip <a href="https://pkg.go.dev/net/">net</a>.<a href="https://pkg.go.dev/net/#IP">IP</a>)</pre>
+				<p>AddPeer creates and adds a new peer to the server&apos;s peer list.
+It takes the peer&apos;s public and preshared keys, along with an IP address to define its identity subnet for allowed IPs.
+This method is used to dynamically expand the server&apos;s network with additional clients.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.DefaultListenPort">func (*Server) <a href="https://github.com/point-c/wgapi/blob/main/wgconfig/server-config.go#L41">DefaultListenPort</a>
+					<a class="permalink" href="#Server.DefaultListenPort">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cfg *<a href="#Server">Server</a>) DefaultListenPort()</pre>
+				<p>DefaultListenPort sets <a href="#Server">Server</a>.ListenPort to <a href="/wgapi/pkg/github.com/point-c/wgapi#DefaultListenPort">wgapi.DefaultListenPort</a>.
+
+				
+				
+				
+			
+				
+				<h3 id="Server.WGConfig">func (*Server) <a href="https://github.com/point-c/wgapi/blob/main/wgconfig/server-config.go#L27">WGConfig</a>
+					<a class="permalink" href="#Server.WGConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (cfg *<a href="#Server">Server</a>) WGConfig() <a href="https://pkg.go.dev/io/">io</a>.<a href="https://pkg.go.dev/io/#Reader">Reader</a></pre>
+				<p>WGConfig generates and returns a WireGuard configuration for the server.
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.21.6.<br>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

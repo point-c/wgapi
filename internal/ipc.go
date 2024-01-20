@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// KeyValue is something represented by a key that can return its value as a string.
 type KeyValue interface {
 	Key() string
 	fmt.Stringer

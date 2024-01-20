@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>wgkey - GoPages</title>
+
+<link type="text/css" rel="stylesheet" href="/wgapi/lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="/wgapi/lib/godoc/jquery.js" defer></script>
+
+
+
+
+<script>var goVersion = "go1.21.6";</script>
+<script src="/wgapi/lib/godoc/godocs.js" defer></script>
+
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages | Auto-generated docs</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package wgkey
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/point-c/wgapi/internal/value/wgkey"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="#ErrInvalidKeyType">type ErrInvalidKeyType</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ErrInvalidKeyType.Error">func (ErrInvalidKeyType[T]) Error() string</a></dd>
+				
+			
+				
+				<dd><a href="#Key">type Key</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PreShared">type PreShared</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PreShared.keyType">func (PreShared) keyType()</a></dd>
+				
+			
+				
+				<dd><a href="#Private">type Private</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Private.keyType">func (Private) keyType()</a></dd>
+				
+			
+				
+				<dd><a href="#Public">type Public</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Public.keyType">func (Public) keyType()</a></dd>
+				
+			
+				
+				<dd><a href="#Type">type Type</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="https://github.com/point-c/wgapi/blob/main/internal/value/wgkey/key.go">key.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="ErrInvalidKeyType">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/wgkey/key.go#L26">ErrInvalidKeyType</a>
+				<a class="permalink" href="#ErrInvalidKeyType">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ErrInvalidKeyType[T <a href="#Type">Type</a>] struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ErrInvalidKeyType.Error">func (ErrInvalidKeyType[T]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/wgkey/key.go#L28">Error</a>
+					<a class="permalink" href="#ErrInvalidKeyType.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#ErrInvalidKeyType">ErrInvalidKeyType</a>[T]) Error() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Key">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/wgkey/key.go#L15">Key</a>
+				<a class="permalink" href="#Key">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Key[T <a href="#Type">Type</a>] <a href="https://pkg.go.dev/golang.zx2c4.com/wireguard/wgctrl/wgtypes/">wgtypes</a>.<a href="https://pkg.go.dev/golang.zx2c4.com/wireguard/wgctrl/wgtypes/#Key">Key</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PreShared">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/wgkey/key.go#L19">PreShared</a>
+				<a class="permalink" href="#PreShared">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type PreShared struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="PreShared.keyType">func (PreShared) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/wgkey/key.go#L24">keyType</a>
+					<a class="permalink" href="#PreShared.keyType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#PreShared">PreShared</a>) keyType()</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Private">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/wgkey/key.go#L17">Private</a>
+				<a class="permalink" href="#Private">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Private struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Private.keyType">func (Private) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/wgkey/key.go#L23">keyType</a>
+					<a class="permalink" href="#Private.keyType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#Private">Private</a>) keyType()</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Public">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/wgkey/key.go#L18">Public</a>
+				<a class="permalink" href="#Public">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Public struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Public.keyType">func (Public) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/wgkey/key.go#L22">keyType</a>
+					<a class="permalink" href="#Public.keyType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#Public">Public</a>) keyType()</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Type">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/wgkey/key.go#L16">Type</a>
+				<a class="permalink" href="#Type">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Type interface{ keyType() }</pre>
+
+			
+
+			
+				
+				<pre>var (
+    <span id="_">_</span> <a href="#Type">Type</a> = <a href="#Private">Private</a>{}
+    <span id="_">_</span> <a href="#Type">Type</a> = <a href="#Public">Public</a>{}
+    <span id="_">_</span> <a href="#Type">Type</a> = <a href="#PreShared">PreShared</a>{}
+)</pre>
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.21.6.<br>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

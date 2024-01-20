@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>value - GoPages</title>
+
+<link type="text/css" rel="stylesheet" href="/wgapi/lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="/wgapi/lib/godoc/jquery.js" defer></script>
+
+
+
+
+<script>var goVersion = "go1.21.6";</script>
+<script src="/wgapi/lib/godoc/godocs.js" defer></script>
+
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages | Auto-generated docs</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package value
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/point-c/wgapi/internal/value"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#boolString">func boolString[B ~bool](b B) string</a></dd>
+			
+				
+				<dd><a href="#getKey">func getKey[K fmt.Stringer]() string</a></dd>
+			
+				
+				<dd><a href="#numString">func numString[N constraints.Integer](n N) string</a></dd>
+			
+			
+				
+				<dd><a href="#IPNet">type IPNet</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#IPNet.Key">func (ipnet IPNet[K]) Key() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#IPNet.String">func (ipnet IPNet[K]) String() string</a></dd>
+				
+			
+				
+				<dd><a href="#Int64">type Int64</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Int64.Key">func (v Int64[K]) Key() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Int64.String">func (v Int64[K]) String() string</a></dd>
+				
+			
+				
+				<dd><a href="#Key">type Key</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Key.Key">func (key Key[K, Type]) Key() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Key.MarshalText">func (key Key[K, Type]) MarshalText() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Key.Public">func (key Key[K, Type]) Public() (public Key[K, wgkey.Public], err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Key.String">func (key Key[K, Type]) String() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Key.UnmarshalText">func (key *Key[K, Type]) UnmarshalText(text []byte) error</a></dd>
+				
+			
+				
+				<dd><a href="#One">type One</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#One.Key">func (One[K]) Key() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#One.String">func (One[K]) String() string</a></dd>
+				
+			
+				
+				<dd><a href="#True">type True</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#True.Key">func (True[K]) Key() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#True.String">func (True[K]) String() string</a></dd>
+				
+			
+				
+				<dd><a href="#UDPAddr">type UDPAddr</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UDPAddr.Key">func (addr UDPAddr[K]) Key() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UDPAddr.String">func (addr UDPAddr[K]) String() string</a></dd>
+				
+			
+				
+				<dd><a href="#Uint16">type Uint16</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Uint16.Key">func (v Uint16[K]) Key() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Uint16.String">func (v Uint16[K]) String() string</a></dd>
+				
+			
+				
+				<dd><a href="#Uint32">type Uint32</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Uint32.Key">func (v Uint32[K]) Key() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Uint32.String">func (v Uint32[K]) String() string</a></dd>
+				
+			
+				
+				<dd><a href="#Uint64">type Uint64</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Uint64.Key">func (v Uint64[K]) Key() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Uint64.String">func (v Uint64[K]) String() string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go">values.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="boolString">func <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L88">boolString</a>
+				<a class="permalink" href="#boolString">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func boolString[B ~<a href="https://pkg.go.dev/builtin/#bool">bool</a>](b B) <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="getKey">func <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L87">getKey</a>
+				<a class="permalink" href="#getKey">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func getKey[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>]() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="numString">func <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L89">numString</a>
+				<a class="permalink" href="#numString">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func numString[N <a href="https://pkg.go.dev/golang.org/x/exp/constraints/">constraints</a>.<a href="https://pkg.go.dev/golang.org/x/exp/constraints/#Integer">Integer</a>](n N) <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+			
+			
+			
+
+		
+		
+			
+			
+			<h2 id="IPNet">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L49">IPNet</a>
+				<a class="permalink" href="#IPNet">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type IPNet[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>] <a href="https://pkg.go.dev/net/">net</a>.<a href="https://pkg.go.dev/net/#IPNet">IPNet</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="IPNet.Key">func (IPNet[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L51">Key</a>
+					<a class="permalink" href="#IPNet.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ipnet <a href="#IPNet">IPNet</a>[K]) Key() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="IPNet.String">func (IPNet[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L52">String</a>
+					<a class="permalink" href="#IPNet.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ipnet <a href="#IPNet">IPNet</a>[K]) String() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Int64">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L29">Int64</a>
+				<a class="permalink" href="#Int64">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Int64[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>] <a href="https://pkg.go.dev/builtin/#int64">int64</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Int64.Key">func (Int64[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L31">Key</a>
+					<a class="permalink" href="#Int64.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#Int64">Int64</a>[K]) Key() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Int64.String">func (Int64[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L32">String</a>
+					<a class="permalink" href="#Int64.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#Int64">Int64</a>[K]) String() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Key">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L54">Key</a>
+				<a class="permalink" href="#Key">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Key[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>, Type <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/">wgkey</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/#Type">Type</a>] <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/">wgkey</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/#Key">Key</a>[Type]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Key.Key">func (Key[K, Type]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L56">Key</a>
+					<a class="permalink" href="#Key.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (key <a href="#Key">Key</a>[K, Type]) Key() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Key.MarshalText">func (Key[K, Type]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L73">MarshalText</a>
+					<a class="permalink" href="#Key.MarshalText">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (key <a href="#Key">Key</a>[K, Type]) MarshalText() ([]<a href="https://pkg.go.dev/builtin/#byte">byte</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>MarshalText converts the key into a base64 string.
+
+				
+				
+				
+			
+				
+				<h3 id="Key.Public">func (Key[K, Type]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L60">Public</a>
+					<a class="permalink" href="#Key.Public">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (key <a href="#Key">Key</a>[K, Type]) Public() (public <a href="#Key">Key</a>[K, <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/">wgkey</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/#Public">Public</a>], err <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>Public converts the keys to a public key. An error will only be returned if the key is not a private key.
+
+				
+				
+				
+			
+				
+				<h3 id="Key.String">func (Key[K, Type]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L57">String</a>
+					<a class="permalink" href="#Key.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (key <a href="#Key">Key</a>[K, Type]) String() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Key.UnmarshalText">func (*Key[K, Type]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L78">UnmarshalText</a>
+					<a class="permalink" href="#Key.UnmarshalText">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (key *<a href="#Key">Key</a>[K, Type]) UnmarshalText(text []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) <a href="https://pkg.go.dev/builtin/#error">error</a></pre>
+				<p>UnmarshalText parses a key in base64 format.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="One">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L39">One</a>
+				<a class="permalink" href="#One">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type One[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>] struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="One.Key">func (One[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L41">Key</a>
+					<a class="permalink" href="#One.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#One">One</a>[K]) Key() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="One.String">func (One[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L42">String</a>
+					<a class="permalink" href="#One.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#One">One</a>[K]) String() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="True">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L34">True</a>
+				<a class="permalink" href="#True">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type True[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>] struct{}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="True.Key">func (True[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L36">Key</a>
+					<a class="permalink" href="#True.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#True">True</a>[K]) Key() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="True.String">func (True[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L37">String</a>
+					<a class="permalink" href="#True.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (<a href="#True">True</a>[K]) String() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="UDPAddr">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L44">UDPAddr</a>
+				<a class="permalink" href="#UDPAddr">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type UDPAddr[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>] <a href="https://pkg.go.dev/net/">net</a>.<a href="https://pkg.go.dev/net/#UDPAddr">UDPAddr</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="UDPAddr.Key">func (UDPAddr[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L46">Key</a>
+					<a class="permalink" href="#UDPAddr.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (addr <a href="#UDPAddr">UDPAddr</a>[K]) Key() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="UDPAddr.String">func (UDPAddr[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L47">String</a>
+					<a class="permalink" href="#UDPAddr.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (addr <a href="#UDPAddr">UDPAddr</a>[K]) String() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Uint16">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L19">Uint16</a>
+				<a class="permalink" href="#Uint16">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Uint16[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>] <a href="https://pkg.go.dev/builtin/#uint16">uint16</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Uint16.Key">func (Uint16[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L21">Key</a>
+					<a class="permalink" href="#Uint16.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#Uint16">Uint16</a>[K]) Key() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Uint16.String">func (Uint16[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L22">String</a>
+					<a class="permalink" href="#Uint16.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#Uint16">Uint16</a>[K]) String() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Uint32">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L14">Uint32</a>
+				<a class="permalink" href="#Uint32">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Uint32[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>] <a href="https://pkg.go.dev/builtin/#uint32">uint32</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Uint32.Key">func (Uint32[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L16">Key</a>
+					<a class="permalink" href="#Uint32.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#Uint32">Uint32</a>[K]) Key() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Uint32.String">func (Uint32[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L17">String</a>
+					<a class="permalink" href="#Uint32.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#Uint32">Uint32</a>[K]) String() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Uint64">type <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L24">Uint64</a>
+				<a class="permalink" href="#Uint64">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Uint64[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>] <a href="https://pkg.go.dev/builtin/#uint64">uint64</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Uint64.Key">func (Uint64[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L26">Key</a>
+					<a class="permalink" href="#Uint64.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#Uint64">Uint64</a>[K]) Key() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Uint64.String">func (Uint64[K]) <a href="https://github.com/point-c/wgapi/blob/main/internal/value/values.go#L27">String</a>
+					<a class="permalink" href="#Uint64.String">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#Uint64">Uint64</a>[K]) String() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="..">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="wgkey/?m=all">wgkey</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.21.6.<br>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

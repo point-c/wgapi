@@ -1,0 +1,136 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/point-c/wgapi/wgconfig/server-config.go - GoPages</title>
+
+<link type="text/css" rel="stylesheet" href="/wgapi/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/wgapi/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.21.6";</script>
+<script src="/wgapi/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages | Auto-generated docs</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/wgapi/src">src</a>/<a href="/wgapi/src/github.com">github.com</a>/<a href="/wgapi/src/github.com/point-c">point-c</a>/<a href="/wgapi/src/github.com/point-c/wgapi">wgapi</a>/<a href="/wgapi/src/github.com/point-c/wgapi/wgconfig">wgconfig</a>/<span class="text-muted">server-config.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/wgapi/pkg/github.com/point-c/wgapi/wgconfig">github.com/point-c/wgapi/wgconfig</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span>package wgconfig
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;github.com/point-c/wgapi&#34;
+<span id="L5" class="ln">     5  </span>	&#34;io&#34;
+<span id="L6" class="ln">     6  </span>	&#34;net&#34;
+<span id="L7" class="ln">     7  </span>)
+<span id="L8" class="ln">     8  </span>
+<span id="L9" class="ln">     9  </span>type (
+<span id="L10" class="ln">    10  </span>	<span class="comment">// Server represents a WireGuard server configuration.</span>
+<span id="L11" class="ln">    11  </span>	<span class="comment">// It holds details necessary to set up and manage a WireGuard server including its private key, the port it listens on, and the set of peers that can connect to it.</span>
+<span id="L12" class="ln">    12  </span>	Server struct {
+<span id="L13" class="ln">    13  </span>		Private    wgapi.PrivateKey <span class="comment">// Private is the server&#39;s private key used for establishing secure connections.</span>
+<span id="L14" class="ln">    14  </span>		ListenPort uint16           <span class="comment">// ListenPort specifies the port number on which the WireGuard server listens for incoming connections.</span>
+<span id="L15" class="ln">    15  </span>		Peers      []*Peer          <span class="comment">// Peers is a list of clients (peers) that are allowed to establish a connection with this server.</span>
+<span id="L16" class="ln">    16  </span>	}
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Peer represents a client configuration that can establish a connection with a WireGuard server.</span>
+<span id="L18" class="ln">    18  </span>	<span class="comment">// It includes the client&#39;s public key, a pre-shared key for additional security, and a list of allowed IP addresses for routing traffic through the tunnel.</span>
+<span id="L19" class="ln">    19  </span>	Peer struct {
+<span id="L20" class="ln">    20  </span>		Public     wgapi.PublicKey    <span class="comment">// Public is the peer&#39;s public key used to identify and authenticate it in the network. (required)</span>
+<span id="L21" class="ln">    21  </span>		PreShared  wgapi.PresharedKey <span class="comment">// PreShared is an optional additional preshared key for enhancing the security of the peer connection. (required)</span>
+<span id="L22" class="ln">    22  </span>		AllowedIPs []net.IPNet        <span class="comment">// AllowedIPs are the IP addresses that this peer is allowed to send and receive traffic from in the VPN tunnel. (required)</span>
+<span id="L23" class="ln">    23  </span>	}
+<span id="L24" class="ln">    24  </span>)
+<span id="L25" class="ln">    25  </span>
+<span id="L26" class="ln">    26  </span><span class="comment">// WGConfig generates and returns a WireGuard configuration for the server.</span>
+<span id="L27" class="ln">    27  </span>func (cfg *Server) WGConfig() io.Reader {
+<span id="L28" class="ln">    28  </span>	conf := wgapi.IPC{
+<span id="L29" class="ln">    29  </span>		cfg.Private,
+<span id="L30" class="ln">    30  </span>		wgapi.ListenPort(cfg.ListenPort),
+<span id="L31" class="ln">    31  </span>	}.WGConfig()
+<span id="L32" class="ln">    32  </span>
+<span id="L33" class="ln">    33  </span>	for _, peer := range cfg.Peers {
+<span id="L34" class="ln">    34  </span>		conf = io.MultiReader(conf, peer.WGConfig())
+<span id="L35" class="ln">    35  </span>	}
+<span id="L36" class="ln">    36  </span>
+<span id="L37" class="ln">    37  </span>	return conf
+<span id="L38" class="ln">    38  </span>}
+<span id="L39" class="ln">    39  </span>
+<span id="L40" class="ln">    40  </span><span class="comment">// DefaultListenPort sets [Server].ListenPort to [wgapi.DefaultListenPort].</span>
+<span id="L41" class="ln">    41  </span>func (cfg *Server) DefaultListenPort() {
+<span id="L42" class="ln">    42  </span>	cfg.ListenPort = uint16(wgapi.DefaultListenPort)
+<span id="L43" class="ln">    43  </span>}
+<span id="L44" class="ln">    44  </span>
+<span id="L45" class="ln">    45  </span><span class="comment">// AddPeer creates and adds a new peer to the server&#39;s peer list.</span>
+<span id="L46" class="ln">    46  </span><span class="comment">// It takes the peer&#39;s public and preshared keys, along with an IP address to define its identity subnet for allowed IPs.</span>
+<span id="L47" class="ln">    47  </span><span class="comment">// This method is used to dynamically expand the server&#39;s network with additional clients.</span>
+<span id="L48" class="ln">    48  </span>func (cfg *Server) AddPeer(publicKey wgapi.PublicKey, preShared wgapi.PresharedKey, ip net.IP) {
+<span id="L49" class="ln">    49  </span>	cfg.Peers = append(cfg.Peers, &amp;Peer{
+<span id="L50" class="ln">    50  </span>		Public:     publicKey,
+<span id="L51" class="ln">    51  </span>		PreShared:  preShared,
+<span id="L52" class="ln">    52  </span>		AllowedIPs: []net.IPNet{net.IPNet(wgapi.IdentitySubnet(ip))},
+<span id="L53" class="ln">    53  </span>	})
+<span id="L54" class="ln">    54  </span>}
+<span id="L55" class="ln">    55  </span>
+<span id="L56" class="ln">    56  </span><span class="comment">// WGConfig generates and returns a WireGuard configuration for the peer.</span>
+<span id="L57" class="ln">    57  </span>func (cfg *Peer) WGConfig() io.Reader {
+<span id="L58" class="ln">    58  </span>	return append(wgapi.IPC{
+<span id="L59" class="ln">    59  </span>		cfg.Public,
+<span id="L60" class="ln">    60  </span>		cfg.PreShared,
+<span id="L61" class="ln">    61  </span>	}, func() (ipc wgapi.IPC) {
+<span id="L62" class="ln">    62  </span>		for _, ip := range cfg.AllowedIPs {
+<span id="L63" class="ln">    63  </span>			ipc = append(ipc, wgapi.AllowedIP(ip))
+<span id="L64" class="ln">    64  </span>		}
+<span id="L65" class="ln">    65  </span>		return
+<span id="L66" class="ln">    66  </span>	}()...).WGConfig()
+<span id="L67" class="ln">    67  </span>}
+<span id="L68" class="ln">    68  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.21.6.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>wgapi - GoPages</title>
+
+<link type="text/css" rel="stylesheet" href="/wgapi/lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="/wgapi/lib/godoc/jquery.js" defer></script>
+
+
+
+
+<script>var goVersion = "go1.21.6";</script>
+<script src="/wgapi/lib/godoc/godocs.js" defer></script>
+
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages | Auto-generated docs</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package wgapi
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/point-c/wgapi"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package wgapi helps with communicating with the userspace wireguard module.
+Since wireguard-go uses a text based configuration this helps with programmatically creating and reading a config.
+Please consult <a href="https://www.wireguard.com/xplatform/">wireguard cross-platform documentation</a> for more information on configuration values.
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="#NewPrivatePublic">func NewPrivatePublic() (private PrivateKey, public PublicKey, err error)</a></dd>
+			
+			
+				
+				<dd><a href="#AllowedIP">type AllowedIP</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#IdentitySubnet">func IdentitySubnet(ip net.IP) AllowedIP</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#parseAllowedIP">func parseAllowedIP(s string) AllowedIP</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Configurable">type Configurable</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Endpoint">type Endpoint</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Errno">type Errno</a></dd>
+				
+				
+			
+				
+				<dd><a href="#FWMark">type FWMark</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Get">type Get</a></dd>
+				
+				
+			
+				
+				<dd><a href="#IPC">type IPC</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#IPC.WGConfig">func (ir IPC) WGConfig() io.Reader</a></dd>
+				
+			
+				
+				<dd><a href="#IPCGet">type IPCGet</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#IPCGet.Reset">func (get *IPCGet) Reset()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#IPCGet.Value">func (get *IPCGet) Value() (IPC, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#IPCGet.Write">func (get *IPCGet) Write(b []byte) (int, error)</a></dd>
+				
+			
+				
+				<dd><a href="#IPCKeyValue">type IPCKeyValue</a></dd>
+				
+				
+			
+				
+				<dd><a href="#LastHandshakeTimeNSec">type LastHandshakeTimeNSec</a></dd>
+				
+				
+			
+				
+				<dd><a href="#LastHandshakeTimeSec">type LastHandshakeTimeSec</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ListenPort">type ListenPort</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PersistentKeepalive">type PersistentKeepalive</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PresharedKey">type PresharedKey</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewPreshared">func NewPreshared() (PresharedKey, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PrivateKey">type PrivateKey</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewPrivate">func NewPrivate() (PrivateKey, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ProtocolVersion">type ProtocolVersion</a></dd>
+				
+				
+			
+				
+				<dd><a href="#PublicKey">type PublicKey</a></dd>
+				
+				
+			
+				
+				<dd><a href="#RXBytes">type RXBytes</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Remove">type Remove</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ReplaceAllowedIPs">type ReplaceAllowedIPs</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ReplacePeers">type ReplacePeers</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Set">type Set</a></dd>
+				
+				
+			
+				
+				<dd><a href="#TXBytes">type TXBytes</a></dd>
+				
+				
+			
+				
+				<dd><a href="#UpdateOnly">type UpdateOnly</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="https://github.com/point-c/wgapi/blob/main/api.go">api.go</a>
+			
+				<a href="https://github.com/point-c/wgapi/blob/main/constants.go">constants.go</a>
+			
+				<a href="https://github.com/point-c/wgapi/blob/main/keys.go">keys.go</a>
+			
+				<a href="https://github.com/point-c/wgapi/blob/main/parser.go">parser.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="ErrnoNone">ErrnoNone</span>      = <a href="#Errno">Errno</a>(0)
+    <span id="ErrnoIO">ErrnoIO</span>        = <a href="#Errno">Errno</a>(<a href="https://pkg.go.dev/golang.zx2c4.com/wireguard/ipc/">ipc</a>.<a href="https://pkg.go.dev/golang.zx2c4.com/wireguard/ipc/#IpcErrorIO">IpcErrorIO</a>)
+    <span id="ErrnoProtocol">ErrnoProtocol</span>  = <a href="#Errno">Errno</a>(<a href="https://pkg.go.dev/golang.zx2c4.com/wireguard/ipc/">ipc</a>.<a href="https://pkg.go.dev/golang.zx2c4.com/wireguard/ipc/#IpcErrorProtocol">IpcErrorProtocol</a>)
+    <span id="ErrnoInvalid">ErrnoInvalid</span>   = <a href="#Errno">Errno</a>(<a href="https://pkg.go.dev/golang.zx2c4.com/wireguard/ipc/">ipc</a>.<a href="https://pkg.go.dev/golang.zx2c4.com/wireguard/ipc/#IpcErrorInvalid">IpcErrorInvalid</a>)
+    <span id="ErrnoPortInUse">ErrnoPortInUse</span> = <a href="#Errno">Errno</a>(<a href="https://pkg.go.dev/golang.zx2c4.com/wireguard/ipc/">ipc</a>.<a href="https://pkg.go.dev/golang.zx2c4.com/wireguard/ipc/#IpcErrorPortInUse">IpcErrorPortInUse</a>)
+    <span id="ErrnoUnknown">ErrnoUnknown</span>   = <a href="#Errno">Errno</a>(<a href="https://pkg.go.dev/builtin/#int64">int64</a>(<a href="https://pkg.go.dev/golang.zx2c4.com/wireguard/ipc/">ipc</a>.<a href="https://pkg.go.dev/golang.zx2c4.com/wireguard/ipc/#IpcErrorUnknown">IpcErrorUnknown</a>))
+)</pre>
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>EmptySubnet represents a subnet configuration that permits all IP addresses.
+It&apos;s defined by setting the allowed IP range to &apos;0.0.0.0/0&apos;, which effectively means
+there are no restrictions on the IP addresses allowed through this subnet. It&apos;s typically
+used in VPN configurations to indicate that all traffic should be routed through the VPN.
+
+				<pre>var <span id="EmptySubnet">EmptySubnet</span> = parseAllowedIP(&#34;0.0.0.0/0&#34;)</pre>
+			
+				
+				<pre>var <span id="kvCutChar">kvCutChar</span> = []<a href="https://pkg.go.dev/builtin/#byte">byte</a>{&#39;=&#39;}</pre>
+			
+				
+				<pre>var <span id="parsers">parsers</span> = map[<a href="https://pkg.go.dev/builtin/#string">string</a>]func([]<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (<a href="#IPCKeyValue">IPCKeyValue</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>){
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Endpoint">Endpoint</a>{}.<a href="#String">String</a>():              <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseUDPAddr">ParseUDPAddr</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Endpoint">Endpoint</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#AllowedIP">AllowedIP</a>{}.<a href="#String">String</a>():             <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseIPNet">ParseIPNet</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#AllowedIP">AllowedIP</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#ReplacePeers">ReplacePeers</a>{}.<a href="#String">String</a>():          <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseTrue">ParseTrue</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#ReplacePeers">ReplacePeers</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Remove">Remove</a>{}.<a href="#String">String</a>():                <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseTrue">ParseTrue</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Remove">Remove</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#UpdateOnly">UpdateOnly</a>{}.<a href="#String">String</a>():            <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseTrue">ParseTrue</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#UpdateOnly">UpdateOnly</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#ReplaceAllowedIPs">ReplaceAllowedIPs</a>{}.<a href="#String">String</a>():     <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseTrue">ParseTrue</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#ReplaceAllowedIPs">ReplaceAllowedIPs</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Get">Get</a>{}.<a href="#String">String</a>():                   <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseOne">ParseOne</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Get">Get</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Set">Set</a>{}.<a href="#String">String</a>():                   <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseOne">ParseOne</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Set">Set</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#ProtocolVersion">ProtocolVersion</a>{}.<a href="#String">String</a>():       <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseOne">ParseOne</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#ProtocolVersion">ProtocolVersion</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#RXBytes">RXBytes</a>{}.<a href="#String">String</a>():               <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseUint64">ParseUint64</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#RXBytes">RXBytes</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#TXBytes">TXBytes</a>{}.<a href="#String">String</a>():               <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseUint64">ParseUint64</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#TXBytes">TXBytes</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#FWMark">FWMark</a>{}.<a href="#String">String</a>():                <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseUint32">ParseUint32</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#FWMark">FWMark</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#ListenPort">ListenPort</a>{}.<a href="#String">String</a>():            <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseUint16">ParseUint16</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#ListenPort">ListenPort</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#PersistentKeepalive">PersistentKeepalive</a>{}.<a href="#String">String</a>():   <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseUint16">ParseUint16</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#PersistentKeepalive">PersistentKeepalive</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Errno">Errno</a>{}.<a href="#String">String</a>():                 <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseInt64">ParseInt64</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Errno">Errno</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#LastHandshakeTimeSec">LastHandshakeTimeSec</a>{}.<a href="#String">String</a>():  <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseInt64">ParseInt64</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#LastHandshakeTimeSec">LastHandshakeTimeSec</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#LastHandshakeTimeNSec">LastHandshakeTimeNSec</a>{}.<a href="#String">String</a>(): <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseInt64">ParseInt64</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#LastHandshakeTimeNSec">LastHandshakeTimeNSec</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#PrivateKey">PrivateKey</a>{}.<a href="#String">String</a>():            <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseKey">ParseKey</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#PrivateKey">PrivateKey</a>, <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/">wgkey</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/#Private">Private</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#PublicKey">PublicKey</a>{}.<a href="#String">String</a>():             <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseKey">ParseKey</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#PublicKey">PublicKey</a>, <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/">wgkey</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/#Public">Public</a>],
+    <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#PresharedKey">PresharedKey</a>{}.<a href="#String">String</a>():          <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/">parser</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/parser/#ParseKey">ParseKey</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#PresharedKey">PresharedKey</a>, <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/">wgkey</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/#PreShared">PreShared</a>],
+}</pre>
+			
+		
+		
+			
+			
+			<h2 id="NewPrivatePublic">func <a href="https://github.com/point-c/wgapi/blob/main/keys.go#L8">NewPrivatePublic</a>
+				<a class="permalink" href="#NewPrivatePublic">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewPrivatePublic() (private <a href="#PrivateKey">PrivateKey</a>, public <a href="#PublicKey">PublicKey</a>, err <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+			<p>NewPrivatePublic generates a new private key and also returns its corresponding public key.
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="AllowedIP">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L93">AllowedIP</a>
+				<a class="permalink" href="#AllowedIP">&#xb6;</a>
+				
+				
+			</h2>
+			<p>AllowedIP is an address allowed to communicate in the tunnel.
+
+			<pre>type AllowedIP = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#IPNet">IPNet</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#AllowedIP">AllowedIP</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="IdentitySubnet">func <a href="https://github.com/point-c/wgapi/blob/main/constants.go#L11">IdentitySubnet</a>
+					<a class="permalink" href="#IdentitySubnet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func IdentitySubnet(ip <a href="https://pkg.go.dev/net/">net</a>.<a href="https://pkg.go.dev/net/#IP">IP</a>) <a href="#AllowedIP">AllowedIP</a></pre>
+				<p>IdentitySubnet takes an IP address (either IPv4 or IPv6) and returns it as an IPv6 address with a
+subnet mask of /128. This effectively identifies a single address, as a /128 mask specifies all
+128 bits of the IPv6 address, leaving no room for a range of addresses.
+
+				
+				
+			
+				
+				<h3 id="parseAllowedIP">func <a href="https://github.com/point-c/wgapi/blob/main/constants.go#L28">parseAllowedIP</a>
+					<a class="permalink" href="#parseAllowedIP">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func parseAllowedIP(s <a href="https://pkg.go.dev/builtin/#string">string</a>) <a href="#AllowedIP">AllowedIP</a></pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="Configurable">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L21">Configurable</a>
+				<a class="permalink" href="#Configurable">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Configurable is something that can be converted into a reader that supplies &apos;key=value\n&apos; values corresponding to the wireguard userspace configuration <a href="https://www.wireguard.com/xplatform/">wireguard cross-platform documentation</a>.
+
+			<pre>type Configurable interface {
+    WGConfig() <a href="https://pkg.go.dev/io/">io</a>.<a href="https://pkg.go.dev/io/#Reader">Reader</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Endpoint">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L91">Endpoint</a>
+				<a class="permalink" href="#Endpoint">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Endpoint is the address:port of a wireguard server
+
+			<pre>type Endpoint = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#UDPAddr">UDPAddr</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Endpoint">Endpoint</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Errno">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L103">Errno</a>
+				<a class="permalink" href="#Errno">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Errno is an error returned by the IPC.
+
+			<pre>type Errno = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#Int64">Int64</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Errno">Errno</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="FWMark">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L99">FWMark</a>
+				<a class="permalink" href="#FWMark">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FWMark configures the interface as specified in <a href="https://www.wireguard.com/xplatform/">wireguard cross-platform documentation</a>. The special value 0 clears the FWMark.
+
+			<pre>type FWMark = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#Uint32">Uint32</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#FWMark">FWMark</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Get">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L70">Get</a>
+				<a class="permalink" href="#Get">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Get specifies a get operation. Not used unless communicating with an external endpoint.
+
+			<pre>type Get = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#One">One</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Get">Get</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IPC">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L32">IPC</a>
+				<a class="permalink" href="#IPC">&#xb6;</a>
+				
+				
+			</h2>
+			<p>IPC is an IPC operation as documented by the <a href="https://www.wireguard.com/xplatform/">wireguard cross-platform documentation</a>.
+
+			<pre>type IPC []<a href="#IPCKeyValue">IPCKeyValue</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="IPC.WGConfig">func (IPC) <a href="https://github.com/point-c/wgapi/blob/main/api.go#L34">WGConfig</a>
+					<a class="permalink" href="#IPC.WGConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (ir <a href="#IPC">IPC</a>) WGConfig() <a href="https://pkg.go.dev/io/">io</a>.<a href="https://pkg.go.dev/io/#Reader">Reader</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IPCGet">type <a href="https://github.com/point-c/wgapi/blob/main/parser.go#L15">IPCGet</a>
+				<a class="permalink" href="#IPCGet">&#xb6;</a>
+				
+				
+			</h2>
+			<p>IPCGet is used to help get information from a wireguard userspace configuration as documented in <a href="https://www.wireguard.com/xplatform/">wireguard cross-platform documentation</a>.
+
+			<pre>type IPCGet struct{ buf <a href="https://pkg.go.dev/bytes/">bytes</a>.<a href="https://pkg.go.dev/bytes/#Buffer">Buffer</a> }
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="IPCGet.Reset">func (*IPCGet) <a href="https://github.com/point-c/wgapi/blob/main/parser.go#L23">Reset</a>
+					<a class="permalink" href="#IPCGet.Reset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (get *<a href="#IPCGet">IPCGet</a>) Reset()</pre>
+				<p>Reset allows this to be reused for another operation.
+Without calling this <a href="#IPCGet.Value">IPCGet.Value</a> will only return the data from the first time this was used.
+
+				
+				
+				
+			
+				
+				<h3 id="IPCGet.Value">func (*IPCGet) <a href="https://github.com/point-c/wgapi/blob/main/parser.go#L28">Value</a>
+					<a class="permalink" href="#IPCGet.Value">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (get *<a href="#IPCGet">IPCGet</a>) Value() (<a href="#IPC">IPC</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>Value converts the text data into an <a href="#IPC">IPC</a> containing typed values.
+
+				
+				
+				
+			
+				
+				<h3 id="IPCGet.Write">func (*IPCGet) <a href="https://github.com/point-c/wgapi/blob/main/parser.go#L19">Write</a>
+					<a class="permalink" href="#IPCGet.Write">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (get *<a href="#IPCGet">IPCGet</a>) Write(b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (<a href="https://pkg.go.dev/builtin/#int">int</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>Write is used to write &apos;key=value\n&apos; lines from the wireguard IPC.
+This is used by the wireguard-go&apos;s IPC library to write values to this parser.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IPCKeyValue">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L26">IPCKeyValue</a>
+				<a class="permalink" href="#IPCKeyValue">&#xb6;</a>
+				
+				
+			</h2>
+			<p>IPCKeyValue is string key and value pair. The value is represented by <a href="https://pkg.go.dev/fmt#Stringer">fmt.Stringer</a>.
+
+			<pre>type IPCKeyValue = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/">internal</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/#KeyValue">KeyValue</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="LastHandshakeTimeNSec">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L79">LastHandshakeTimeNSec</a>
+				<a class="permalink" href="#LastHandshakeTimeNSec">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LastHandshakeTimeNSec is the nanoseconds resolution of the last handshake relative to unix epoch.
+
+			<pre>type LastHandshakeTimeNSec = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#Int64">Int64</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#LastHandshakeTimeNSec">LastHandshakeTimeNSec</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="LastHandshakeTimeSec">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L77">LastHandshakeTimeSec</a>
+				<a class="permalink" href="#LastHandshakeTimeSec">&#xb6;</a>
+				
+				
+			</h2>
+			<p>LastHandshakeTimeSec is the seconds since the last handshake relative to unix epoch.
+
+			<pre>type LastHandshakeTimeSec = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#Int64">Int64</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#LastHandshakeTimeSec">LastHandshakeTimeSec</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ListenPort">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L95">ListenPort</a>
+				<a class="permalink" href="#ListenPort">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ListenPort is the system port used to listen for wireguard traffic.
+
+			<pre>type ListenPort = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#Uint16">Uint16</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#ListenPort">ListenPort</a>]</pre>
+
+			
+				
+				<pre>const <span id="DefaultListenPort">DefaultListenPort</span> <a href="#ListenPort">ListenPort</a> = 51820</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PersistentKeepalive">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L56">PersistentKeepalive</a>
+				<a class="permalink" href="#PersistentKeepalive">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PersistentKeepalive is the interval to send a persistent keepalive packet. Special value 0 disables this.
+
+			<pre>type PersistentKeepalive = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#Uint16">Uint16</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#PersistentKeepalive">PersistentKeepalive</a>]</pre>
+
+			
+				
+				<pre>const <span id="DefaultPersistentKeepalive">DefaultPersistentKeepalive</span> <a href="#PersistentKeepalive">PersistentKeepalive</a> = 25</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PresharedKey">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L52">PresharedKey</a>
+				<a class="permalink" href="#PresharedKey">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PresharedKey is a preshared key usable by the IPC.
+
+			<pre>type PresharedKey = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#Key">Key</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#PresharedKey">PresharedKey</a>, <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/">wgkey</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/#PreShared">PreShared</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPreshared">func <a href="https://github.com/point-c/wgapi/blob/main/keys.go#L25">NewPreshared</a>
+					<a class="permalink" href="#NewPreshared">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewPreshared() (<a href="#PresharedKey">PresharedKey</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>NewPreshared generates a new preshared key.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="PrivateKey">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L48">PrivateKey</a>
+				<a class="permalink" href="#PrivateKey">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PrivateKey is a private key usable by the IPC.
+
+			<pre>type PrivateKey = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#Key">Key</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#PrivateKey">PrivateKey</a>, <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/">wgkey</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/#Private">Private</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPrivate">func <a href="https://github.com/point-c/wgapi/blob/main/keys.go#L19">NewPrivate</a>
+					<a class="permalink" href="#NewPrivate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewPrivate() (<a href="#PrivateKey">PrivateKey</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>NewPrivate generates a new private key.
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ProtocolVersion">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L68">ProtocolVersion</a>
+				<a class="permalink" href="#ProtocolVersion">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ProtocolVersion is the version of the protocol. Generally not used.
+
+			<pre>type ProtocolVersion = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#One">One</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#ProtocolVersion">ProtocolVersion</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="PublicKey">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L50">PublicKey</a>
+				<a class="permalink" href="#PublicKey">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PublicKey is a public key usable by the IPC.
+
+			<pre>type PublicKey = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#Key">Key</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#PublicKey">PublicKey</a>, <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/">wgkey</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/#Public">Public</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="RXBytes">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L84">RXBytes</a>
+				<a class="permalink" href="#RXBytes">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RXBytes are the number of received bytes. Only present in a get operation.
+
+			<pre>type RXBytes = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#Uint64">Uint64</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#RXBytes">RXBytes</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Remove">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L62">Remove</a>
+				<a class="permalink" href="#Remove">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Remove removes the peer.
+
+			<pre>type Remove = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#True">True</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Remove">Remove</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ReplaceAllowedIPs">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L66">ReplaceAllowedIPs</a>
+				<a class="permalink" href="#ReplaceAllowedIPs">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ReplaceAllowedIPs replaces the current allowed IPs instead of appending.
+
+			<pre>type ReplaceAllowedIPs = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#True">True</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#ReplaceAllowedIPs">ReplaceAllowedIPs</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ReplacePeers">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L60">ReplacePeers</a>
+				<a class="permalink" href="#ReplacePeers">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ReplacePeers replaces all the peers.
+
+			<pre>type ReplacePeers = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#True">True</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#ReplacePeers">ReplacePeers</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Set">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L72">Set</a>
+				<a class="permalink" href="#Set">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Set specifies a set operation. Not used unless communicating with an external endpoint.
+
+			<pre>type Set = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#One">One</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#Set">Set</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TXBytes">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L86">TXBytes</a>
+				<a class="permalink" href="#TXBytes">&#xb6;</a>
+				
+				
+			</h2>
+			<p>TXBytes are the number of transferred bytes. Only present in a get operation.
+
+			<pre>type TXBytes = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#Uint64">Uint64</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#TXBytes">TXBytes</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="UpdateOnly">type <a href="https://github.com/point-c/wgapi/blob/main/api.go#L64">UpdateOnly</a>
+				<a class="permalink" href="#UpdateOnly">&#xb6;</a>
+				
+				
+			</h2>
+			<p>UpdateOnly only updates the peer if it is already present.
+
+			<pre>type UpdateOnly = <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/">value</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/#True">True</a>[<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/">key</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/key/#UpdateOnly">UpdateOnly</a>]</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="..">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="internal/?m=all">internal</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="internal/key/?m=all">key</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Code generated by events-generate; DO NOT EDIT.
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 40px;">
+						<a href="internal/key/internal/?m=all">internal</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 60px;">
+						<a href="internal/key/internal/cmd/?m=all">cmd</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="internal/parser/?m=all">parser</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="internal/value/?m=all">value</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 40px;">
+						<a href="internal/value/wgkey/?m=all">wgkey</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="wgconfig/?m=all">wgconfig</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						Package wgconfig provides examples of simple client and server configurations using the WireGuard API.
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.21.6.<br>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

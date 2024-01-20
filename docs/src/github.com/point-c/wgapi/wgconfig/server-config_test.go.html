@@ -1,0 +1,142 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/point-c/wgapi/wgconfig/server-config_test.go - GoPages</title>
+
+<link type="text/css" rel="stylesheet" href="/wgapi/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/wgapi/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.21.6";</script>
+<script src="/wgapi/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages | Auto-generated docs</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/wgapi/pkg/github.com/point-c/wgapi/">GoPages</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/wgapi/src">src</a>/<a href="/wgapi/src/github.com">github.com</a>/<a href="/wgapi/src/github.com/point-c">point-c</a>/<a href="/wgapi/src/github.com/point-c/wgapi">wgapi</a>/<a href="/wgapi/src/github.com/point-c/wgapi/wgconfig">wgconfig</a>/<span class="text-muted">server-config_test.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/wgapi/pkg/github.com/point-c/wgapi/wgconfig">github.com/point-c/wgapi/wgconfig</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span>package wgconfig
+<span id="L2" class="ln">     2  </span>
+<span id="L3" class="ln">     3  </span>import (
+<span id="L4" class="ln">     4  </span>	&#34;github.com/point-c/wgapi&#34;
+<span id="L5" class="ln">     5  </span>	&#34;github.com/stretchr/testify/require&#34;
+<span id="L6" class="ln">     6  </span>	&#34;io&#34;
+<span id="L7" class="ln">     7  </span>	&#34;net&#34;
+<span id="L8" class="ln">     8  </span>	&#34;testing&#34;
+<span id="L9" class="ln">     9  </span>)
+<span id="L10" class="ln">    10  </span>
+<span id="L11" class="ln">    11  </span>func TestServerWGConfig(t *testing.T) {
+<span id="L12" class="ln">    12  </span>	private, public, err := wgapi.NewPrivatePublic()
+<span id="L13" class="ln">    13  </span>	require.NoError(t, err)
+<span id="L14" class="ln">    14  </span>	preshared, err := wgapi.NewPreshared()
+<span id="L15" class="ln">    15  </span>	require.NoError(t, err)
+<span id="L16" class="ln">    16  </span>	server := &amp;Server{
+<span id="L17" class="ln">    17  </span>		Private:    private,
+<span id="L18" class="ln">    18  </span>		ListenPort: 51820,
+<span id="L19" class="ln">    19  </span>		Peers:      []*Peer{},
+<span id="L20" class="ln">    20  </span>	}
+<span id="L21" class="ln">    21  </span>
+<span id="L22" class="ln">    22  </span>	server.AddPeer(public, preshared, net.IP{192, 168, 1, 2})
+<span id="L23" class="ln">    23  </span>	server.AddPeer(public, preshared, net.IP{192, 168, 1, 3})
+<span id="L24" class="ln">    24  </span>
+<span id="L25" class="ln">    25  </span>	confReader := server.WGConfig()
+<span id="L26" class="ln">    26  </span>	require.NotNil(t, confReader)
+<span id="L27" class="ln">    27  </span>
+<span id="L28" class="ln">    28  </span>	b, err := io.ReadAll(confReader)
+<span id="L29" class="ln">    29  </span>	require.NoError(t, err)
+<span id="L30" class="ln">    30  </span>	require.NotEmpty(t, b)
+<span id="L31" class="ln">    31  </span>}
+<span id="L32" class="ln">    32  </span>
+<span id="L33" class="ln">    33  </span>func TestServerDefaultListenPort(t *testing.T) {
+<span id="L34" class="ln">    34  </span>	server := &amp;Server{}
+<span id="L35" class="ln">    35  </span>
+<span id="L36" class="ln">    36  </span>	server.DefaultListenPort()
+<span id="L37" class="ln">    37  </span>	require.Equal(t, uint16(wgapi.DefaultListenPort), server.ListenPort)
+<span id="L38" class="ln">    38  </span>}
+<span id="L39" class="ln">    39  </span>
+<span id="L40" class="ln">    40  </span>func TestServerAddPeer(t *testing.T) {
+<span id="L41" class="ln">    41  </span>	_, public, err := wgapi.NewPrivatePublic()
+<span id="L42" class="ln">    42  </span>	require.NoError(t, err)
+<span id="L43" class="ln">    43  </span>	preshared, err := wgapi.NewPreshared()
+<span id="L44" class="ln">    44  </span>	require.NoError(t, err)
+<span id="L45" class="ln">    45  </span>	server := &amp;Server{Peers: []*Peer{}}
+<span id="L46" class="ln">    46  </span>	ip := net.IP{192, 168, 1, 2}
+<span id="L47" class="ln">    47  </span>
+<span id="L48" class="ln">    48  </span>	server.AddPeer(public, preshared, ip)
+<span id="L49" class="ln">    49  </span>
+<span id="L50" class="ln">    50  </span>	require.Len(t, server.Peers, 1)
+<span id="L51" class="ln">    51  </span>	require.Equal(t, public, server.Peers[0].Public)
+<span id="L52" class="ln">    52  </span>	require.Equal(t, preshared, server.Peers[0].PreShared)
+<span id="L53" class="ln">    53  </span>	require.Equal(t, []net.IPNet{net.IPNet(wgapi.IdentitySubnet(ip))}, server.Peers[0].AllowedIPs)
+<span id="L54" class="ln">    54  </span>}
+<span id="L55" class="ln">    55  </span>
+<span id="L56" class="ln">    56  </span>func TestPeerWGConfig(t *testing.T) {
+<span id="L57" class="ln">    57  </span>	_, public, err := wgapi.NewPrivatePublic()
+<span id="L58" class="ln">    58  </span>	require.NoError(t, err)
+<span id="L59" class="ln">    59  </span>	preshared, err := wgapi.NewPreshared()
+<span id="L60" class="ln">    60  </span>	require.NoError(t, err)
+<span id="L61" class="ln">    61  </span>	peer := &amp;Peer{
+<span id="L62" class="ln">    62  </span>		Public:     public,
+<span id="L63" class="ln">    63  </span>		PreShared:  preshared,
+<span id="L64" class="ln">    64  </span>		AllowedIPs: []net.IPNet{net.IPNet(wgapi.IdentitySubnet(net.IP{192, 168, 1, 2}))},
+<span id="L65" class="ln">    65  </span>	}
+<span id="L66" class="ln">    66  </span>
+<span id="L67" class="ln">    67  </span>	confReader := peer.WGConfig()
+<span id="L68" class="ln">    68  </span>	require.NotNil(t, confReader)
+<span id="L69" class="ln">    69  </span>
+<span id="L70" class="ln">    70  </span>	b, err := io.ReadAll(confReader)
+<span id="L71" class="ln">    71  </span>	require.NoError(t, err)
+<span id="L72" class="ln">    72  </span>	require.NotEmpty(t, b)
+<span id="L73" class="ln">    73  </span>}
+<span id="L74" class="ln">    74  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.21.6.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>
