@@ -1,3 +1,4 @@
+// Package wgkey holds basic types for wireguard keys.
 package wgkey
 
 import (

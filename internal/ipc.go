@@ -1,3 +1,4 @@
+// Package internal contains packages that assist with wireguard types.
 package internal
 
 import (

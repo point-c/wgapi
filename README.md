@@ -1,6 +1,6 @@
 # wgapi
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/point-c/wgapi@v0.0.1.svg)](https://godocs.io/github.com/point-c/wgapi@v0.0.1)
+[![Go Reference](https://img.shields.io/badge/godoc-reference-%23007d9c.svg)](https://point-c.github.io/wgapi)
 
 ## Introduction
 WGAPI is a Go package designed to assist in communicating with the Wireguard userspace module. It focuses on programmatically creating, reading, and handling Wireguard configuration in a text-based format, making it easier to manage Wireguard instances programmatically.
@@ -191,6 +191,15 @@ The package includes tests that demonstrate its functionality. Use Go's testing 
 ```bash
 go test ./...
 ```
+
+## Godocs
+
+To regenerate godocs:
+
+```bash
+go generate -tags docs ./...
+```
+
 
 ## Code Generation
 

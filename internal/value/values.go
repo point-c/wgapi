@@ -1,3 +1,4 @@
+// Package value manages key-value pairs, conforming to the [internal.KeyValue] interface.
 package value
 
 import (

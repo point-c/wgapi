@@ -89,7 +89,8 @@
 			</div>
 			<div class="expanded">
 				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
-				
+				<p>Package parser contains functions that assist with parsing a wireguard-go ipc response.
+
 				
 			</div>
 		</div>
@@ -180,7 +181,7 @@
 		
 			
 			
-			<h2 id="ParseInt">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L62">ParseInt</a>
+			<h2 id="ParseInt">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L63">ParseInt</a>
 				<a class="permalink" href="#ParseInt">&#xb6;</a>
 				
 				
@@ -193,7 +194,7 @@
 		
 			
 			
-			<h2 id="ParseUint">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L52">ParseUint</a>
+			<h2 id="ParseUint">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L53">ParseUint</a>
 				<a class="permalink" href="#ParseUint">&#xb6;</a>
 				
 				
@@ -227,7 +228,7 @@ newline.
 		
 			
 			
-			<h2 id="IPCKeyValue">type <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L15">IPCKeyValue</a>
+			<h2 id="IPCKeyValue">type <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L16">IPCKeyValue</a>
 				<a class="permalink" href="#IPCKeyValue">&#xb6;</a>
 				
 				
@@ -245,7 +246,7 @@ newline.
 
 			
 				
-				<h3 id="ParseConstant">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L33">ParseConstant</a>
+				<h3 id="ParseConstant">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L34">ParseConstant</a>
 					<a class="permalink" href="#ParseConstant">&#xb6;</a>
 					
 					
@@ -256,7 +257,7 @@ newline.
 				
 			
 				
-				<h3 id="ParseIPNet">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L17">ParseIPNet</a>
+				<h3 id="ParseIPNet">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L18">ParseIPNet</a>
 					<a class="permalink" href="#ParseIPNet">&#xb6;</a>
 					
 					
@@ -267,7 +268,7 @@ newline.
 				
 			
 				
-				<h3 id="ParseInt64">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L57">ParseInt64</a>
+				<h3 id="ParseInt64">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L58">ParseInt64</a>
 					<a class="permalink" href="#ParseInt64">&#xb6;</a>
 					
 					
@@ -278,18 +279,19 @@ newline.
 				
 			
 				
-				<h3 id="ParseKey">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L67">ParseKey</a>
+				<h3 id="ParseKey">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L69">ParseKey</a>
 					<a class="permalink" href="#ParseKey">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func ParseKey[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>, T <a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/">wgkey</a>.<a href="/wgapi/pkg/github.com/point-c/wgapi/internal/value/wgkey/#Type">Type</a>](b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (<a href="#IPCKeyValue">IPCKeyValue</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
-				
+				<p>ParseKey parses a key in hex string format.
+
 				
 				
 			
 				
-				<h3 id="ParseOne">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L25">ParseOne</a>
+				<h3 id="ParseOne">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L26">ParseOne</a>
 					<a class="permalink" href="#ParseOne">&#xb6;</a>
 					
 					
@@ -300,7 +302,7 @@ newline.
 				
 			
 				
-				<h3 id="ParseTrue">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L29">ParseTrue</a>
+				<h3 id="ParseTrue">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L30">ParseTrue</a>
 					<a class="permalink" href="#ParseTrue">&#xb6;</a>
 					
 					
@@ -311,18 +313,19 @@ newline.
 				
 			
 				
-				<h3 id="ParseUDPAddr">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L78">ParseUDPAddr</a>
+				<h3 id="ParseUDPAddr">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L81">ParseUDPAddr</a>
 					<a class="permalink" href="#ParseUDPAddr">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func ParseUDPAddr[K <a href="https://pkg.go.dev/fmt/">fmt</a>.<a href="https://pkg.go.dev/fmt/#Stringer">Stringer</a>](b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) (<a href="#IPCKeyValue">IPCKeyValue</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
-				
+				<p>ParseUDPAddr parses an address using <a href="https://pkg.go.dev/net#ResolveUDPAddr">net.ResolveUDPAddr</a>.
+
 				
 				
 			
 				
-				<h3 id="ParseUint16">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L40">ParseUint16</a>
+				<h3 id="ParseUint16">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L41">ParseUint16</a>
 					<a class="permalink" href="#ParseUint16">&#xb6;</a>
 					
 					
@@ -333,7 +336,7 @@ newline.
 				
 			
 				
-				<h3 id="ParseUint32">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L44">ParseUint32</a>
+				<h3 id="ParseUint32">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L45">ParseUint32</a>
 					<a class="permalink" href="#ParseUint32">&#xb6;</a>
 					
 					
@@ -344,7 +347,7 @@ newline.
 				
 			
 				
-				<h3 id="ParseUint64">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L48">ParseUint64</a>
+				<h3 id="ParseUint64">func <a href="https://github.com/point-c/wgapi/blob/main/internal/parser/parsers.go#L49">ParseUint64</a>
 					<a class="permalink" href="#ParseUint64">&#xb6;</a>
 					
 					

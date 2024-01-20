@@ -1,3 +1,4 @@
+// Package parser contains functions that assist with parsing a wireguard-go ipc response.
 package parser
 
 import (
@@ -64,6 +65,7 @@ func ParseInt[N constraints.Signed](b []byte) (N, error) {
 	return N(v), err
 }
 
+// ParseKey parses a key in hex string format.
 func ParseKey[K fmt.Stringer, T wgkey.Type](b []byte) (IPCKeyValue, error) {
 	var k wgkey.Key[T]
 	n, err := hex.Decode(k[:], b)
@@ -75,6 +77,7 @@ func ParseKey[K fmt.Stringer, T wgkey.Type](b []byte) (IPCKeyValue, error) {
 	return value.Key[K, T](k), nil
 }
 
+// ParseUDPAddr parses an address using [net.ResolveUDPAddr].
 func ParseUDPAddr[K fmt.Stringer](b []byte) (IPCKeyValue, error) {
 	addr, err := net.ResolveUDPAddr("udp", string(b))
 	if err != nil {
