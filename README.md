@@ -1,5 +1,6 @@
 # wgapi
 
+[![Wireguard](https://img.shields.io/badge/wireguard-%2388171A.svg?logo=wireguard)](https://www.wireguard.com/xplatform/)
 [![Go Reference](https://img.shields.io/badge/godoc-reference-%23007d9c.svg)](https://point-c.github.io/wgapi)
 
 ## Introduction
